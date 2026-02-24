@@ -4,8 +4,6 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 // import { makeStyles } from '@material-ui/core/styles';
 import { AiOutlineHome } from "react-icons/ai";
-
-import './BlogPage.css'
 import { SingleBlog } from '../../components'
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { blogData } from '../../data/blogData'
