@@ -1,4 +1,4 @@
-import one from '../assets/svg/projects/CaminemosJuntas.png'
+import one from '../assets/svg/projects/caminemosjuntas.png'
 import two from '../assets/svg/projects/two.svg'
 import three from '../assets/svg/projects/three.svg'
 
