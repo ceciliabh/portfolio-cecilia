@@ -1,45 +1,18 @@
-import one from '../assets/svg/projects/one.svg'
+import one from '../assets/svg/projects/CaminemosJuntas.png'
 import two from '../assets/svg/projects/two.svg'
 import three from '../assets/svg/projects/three.svg'
 
 
 export const projectsData = [
     {
-        id: 1,
-        projectName: 'Employee Management',
-        projectDesc: 'This project aims to build an employee management system that consolidates all information of a company',
-        tags: ['React', 'CSS', 'Material Ui'],
-        code: 'https://github.com/hhhrrrttt222111/developer-portfolio',
-        demo: 'https://github.com/hhhrrrttt222111/developer-portfolio',
-        image: one
-    },
-        {
         id: 2,
-        projectName: 'Intelligent Interaction System (Thesis)',
-        projectDesc: 'Full-stack web platform integrating Artificial Intelligence to provide guidance and support for women victims of violence.',
-        tags: ['React', 'Node JS', 'PostgreSQL'],
-        code: '',
-        demo: '',
+        projectName: 'Caminemos Juntas',
+        projectDesc: 'AI-powered platform designed to support women victims of violence, integrating geolocation of justice centers, educational tools such as a violentómetro, and intelligent assistance for guidance and resources.',
+        tags: ['React', 'Node JS', 'PostgreSQL', 'AI'],
+        code: 'https://github.com/ceciliabh/caminemos-juntas',
+        demo: 'https://www.caminemosjuntas.com/',
         image: one
     },
-    {
-        id: 3,
-        projectName: 'E-commerce Platform',
-        projectDesc: 'Complete ecommerce development including catalog, cart, checkout and JWT authentication with .NET Core microservices.',
-        tags: ['React', 'TypeScript', 'NET Core'],
-        code: '',
-        demo: '',
-        image: two
-    },
-    {
-        id: 4,
-        projectName: 'Salubot - AI Chatbot',
-        projectDesc: 'AI-powered personal assistant chatbot focused on healthy lifestyle guidance, published in academic literature.',
-        tags: ['Node JS', 'AI', 'PostgreSQL'],
-        code: '',
-        demo: '',
-        image: three
-    }
 
 ]
 

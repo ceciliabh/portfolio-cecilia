@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { ThemeContext } from './contexts/ThemeContext';
-import { Main, BlogPage, ProjectPage } from './pages'
+import { Main, BlogPage } from './pages'
 import { BackToTop } from './components'
 import ScrollToTop from './utils/ScrollToTop'
 import ParticlesBackground from "./components/ParticlesBackground";
@@ -21,7 +21,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/blog" element={<BlogPage />} />
-            <Route path="/project/:id" element={<ProjectPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>

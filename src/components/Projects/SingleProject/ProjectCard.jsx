@@ -2,7 +2,7 @@ import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
 
-function ProjectCard({ name, description, github, demo }) {
+function ProjectCard({ projectName, projectDesc, code, demo, image }) {
   return (
     <div className="bg-white/5 backdrop-blur-xl border border-white/10 
                     rounded-3xl p-8 shadow-2xl 
@@ -12,19 +12,24 @@ function ProjectCard({ name, description, github, demo }) {
                     transition-all duration-300">
 
       <div>
+        <img 
+          src={image} 
+          alt={projectName}
+          className="w-full h-48 object-cover rounded-xl mb-6"
+        />
         <h3 className="text-xl font-semibold text-white mb-4">
-          {name}
+          {projectName}
         </h3>
 
         <p className="text-gray-400 text-sm leading-relaxed">
-          {description}
+          {projectDesc}
         </p>
       </div>
 
       <div className="flex gap-6 mt-8 text-lg text-gray-400">
-        {github && (
+        {code && (
           <a
-            href={github}
+            href={code}
             target="_blank"
             rel="noreferrer"
             className="hover:text-purple-400 transition hover:scale-110"
