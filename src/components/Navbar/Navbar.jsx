@@ -18,7 +18,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
         {/* LOGO */}
-        <a href="#home" className="text-xl font-bold text-purple-500">
+        <a href="#home" className="text-xl font-bold text-pink-500">
           
         </a>
 
@@ -28,7 +28,7 @@ function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="hover:text-purple-500 transition"
+              className="hover:text-pink-500 transition"
             >
               {link.name}
             </a>
@@ -53,7 +53,7 @@ function Navbar() {
               key={link.name}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="text-gray-300 hover:text-purple-500 transition"
+              className="text-gray-300 hover:text-pink-500 transition"
             >
               {link.name}
             </a>

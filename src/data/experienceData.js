@@ -19,7 +19,7 @@ export const experienceData = [
     endYear: "Dec 2023",
     description: [
       "Development of a full ecommerce platform (catalog, cart, checkout) using React.",
-      "Modular API development under microservices architecture.",
+      "Modular API development under micpinkrvices architecture.",
       "JWT authentication & authorization in .NET Core services.",
       "Frontend–backend integration ensuring validation and secure data flow."
     ],

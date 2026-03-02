@@ -10,7 +10,7 @@ function Blog() {
   return (
     <section id="blog" className=" text-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold mb-12 text-purple-500">
+        <h1 className="text-4xl font-bold mb-12 text-pink-500">
           Blog
         </h1>
 
@@ -23,7 +23,7 @@ function Blog() {
         {blogData.length > 3 && (
           <div className="mt-12 text-center">
             <Link to="/blog">
-              <button className="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-xl flex items-center gap-2 mx-auto transition">
+              <button className="bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-xl flex items-center gap-2 mx-auto transition">
                 View All
                 <HiArrowRight />
               </button>

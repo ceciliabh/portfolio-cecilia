@@ -13,7 +13,7 @@ function Skills() {
     >
       <div className="max-w-6xl mx-auto">
 
-        <h2 className="text-4xl font-bold text-purple-400 mb-16 text-center">
+        <h2 className="text-4xl font-bold text-pink-400 mb-16 text-center">
           Tech Stack
         </h2>
 
@@ -24,7 +24,7 @@ function Skills() {
         >
           <motion.div
             animate={{
-              x: isPaused ? 0 : ["0%", "-50%"],
+              x: isPaused ? 0 : ["0%", "-90%"],
             }}
             transition={{
               repeat: Infinity,
@@ -41,8 +41,8 @@ function Skills() {
                            flex flex-col items-center justify-center
                            shadow-2xl
                            hover:-translate-y-2
-                           hover:border-purple-500/40
-                           hover:shadow-purple-500/10
+                           hover:border-pink-500/40
+                           hover:shadow-pink-500/10
                            transition-all duration-300 group"
               >
                 <img

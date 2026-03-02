@@ -1,5 +1,5 @@
 .animated-bg {
-  background: radial-gradient(circle at 20% 20%, #000000, #110621, #190931);
+  background: radial-gradient(circle at 20% 20%, #000000, #0e0122, #240059);
   animation: gradientMove 10s ease infinite;
   background-size: 200% 200%;
 }

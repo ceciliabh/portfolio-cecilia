@@ -7,8 +7,8 @@ function ProjectCard({ projectName, projectDesc, code, demo, image }) {
     <div className="bg-white/5 backdrop-blur-xl border border-white/10 
                     rounded-3xl p-8 shadow-2xl 
                     flex flex-col justify-between
-                    hover:-translate-y-2 hover:border-purple-500/40 
-                    hover:shadow-purple-500/10 
+                    hover:-translate-y-2 hover:border-pink-500/40 
+                    hover:shadow-pink-500/10 
                     transition-all duration-300">
 
       <div>
@@ -32,7 +32,7 @@ function ProjectCard({ projectName, projectDesc, code, demo, image }) {
             href={code}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-purple-400 transition hover:scale-110"
+            className="hover:text-pink-400 transition hover:scale-110"
           >
             <FaGithub />
           </a>
@@ -42,7 +42,7 @@ function ProjectCard({ projectName, projectDesc, code, demo, image }) {
             href={demo}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-purple-400 transition hover:scale-110"
+            className="hover:text-pink-400 transition hover:scale-110"
           >
             <FiExternalLink />
           </a>

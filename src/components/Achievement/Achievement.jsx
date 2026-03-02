@@ -8,7 +8,7 @@ function Achievement() {
   return (
     <section id="achievement" className="text-white py-20 px-6">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4 text-purple-500">
+        <h1 className="text-4xl font-bold mb-4 text-pink-500">
           Achievements
         </h1>
         <p className="text-gray-400 mb-12">

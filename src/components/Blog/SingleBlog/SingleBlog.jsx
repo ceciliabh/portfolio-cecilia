@@ -19,7 +19,7 @@ function SingleBlog({ title, description, date, image, url }) {
 
       <div className="p-6">
         <p className="text-sm text-gray-400 mb-2">{date}</p>
-        <h3 className="text-lg font-semibold text-purple-400 mb-2">
+        <h3 className="text-lg font-semibold text-pink-400 mb-2">
           {title}
         </h3>
         <p className="text-gray-300 text-sm">

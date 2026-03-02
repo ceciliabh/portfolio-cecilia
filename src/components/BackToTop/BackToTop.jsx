@@ -25,7 +25,7 @@ function BackToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-8 right-8 text-purple-500 text-5xl hover:scale-110 transition"
+      className="fixed bottom-8 right-8 text-pink-500 text-5xl hover:scale-110 transition"
     >
       <IoIosArrowDropupCircle />
     </button>

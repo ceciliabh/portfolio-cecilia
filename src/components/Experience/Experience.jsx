@@ -7,7 +7,7 @@ function Experience() {
     <section id="experience" className="py-24 px-6">
       <div className="max-w-5xl mx-auto">
 
-        <h2 className="text-4xl font-bold text-purple-400 mb-20 text-center">
+        <h2 className="text-4xl font-bold text-pink-400 mb-20 text-center">
           Professional Experience
         </h2>
 

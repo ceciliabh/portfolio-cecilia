@@ -9,7 +9,7 @@ function Services() {
     <section id="services" className=" text-white py-20 px-6">
       <div className="max-w-6xl mx-auto text-center">
 
-        <h2 className="text-4xl font-bold text-purple-500 mb-6">
+        <h2 className="text-4xl font-bold text-pink-500 mb-6">
           Services
         </h2>
 
