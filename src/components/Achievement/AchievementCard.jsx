@@ -9,7 +9,7 @@ function AchievementCard({ title, details, date, field, image }) {
                     transition-all duration-300">
 
       <div className="mb-6">
-        <h2 className="text-xl font-semibold text-pink-400 mb-3">
+        <h2 className="text-xl font-semibold text-pink-500 mb-3">
           {title}
         </h2>
         <p className="text-gray-400 text-sm leading-relaxed">

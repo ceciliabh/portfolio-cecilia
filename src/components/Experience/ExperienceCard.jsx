@@ -21,7 +21,7 @@ function ExperienceCard({
                       hover:shadow-pink-500/10 
                       transition-all duration-300">
 
-        <p className="text-pink-400 text-sm mb-2">
+        <p className="text-pink-500 text-sm mb-2">
           {startYear} – {endYear}
         </p>
 

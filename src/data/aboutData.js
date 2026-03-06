@@ -1,5 +1,5 @@
 export const aboutData = {
     title: "Who I am",
     description1: "I'm Cecilia Barranco, a Computer Science Engineer based in México.",
-    description2: "I have 3+ years of experience as a Fullstack and Frontend Developer, building scalable web applications, REST APIs and integrating backend–frontend solutions. I specialize in React, .NET Core and modern JavaScript ecosystems. I enjoy solving complex problems, debugging systems and delivering secure, high-quality products aligned with business requirements.",
+    description2: "I have over 4 years of experience working as a Frontend and FullStack Developer building scalable web platforms and REST API integrations. My main focus is frontend engineering using React, TypeScript and modern JavaScript ecosystems. I enjoy solving complex technical problems, debugging production systems and building clean, maintainable architectures that deliver real value to users and businesses.",
 }

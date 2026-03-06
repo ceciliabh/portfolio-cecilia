@@ -62,9 +62,9 @@ function Landing() {
           transition={{ delay: 0.8 }}
           className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto"
         >
-          Computer Science Engineer with 3+ years of experience building scalable
-          web applications, REST APIs and secure backend integrations.
-          Specialized in React, .NET Core and modern frontend architectures.
+          Frontend Engineer with 4 years of experience building scalable web applications using React, TypeScript and modern JavaScript frameworks.
+          I specialize in frontend architecture, reusable component systems, performance optimization and seamless integration with backend APIs.
+          I have worked on production platforms, e-commerce systems and enterprise integrations, collaborating with backend, QA and design teams to deliver reliable, user-centered products.
         </motion.p>
 
 

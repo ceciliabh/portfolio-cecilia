@@ -13,7 +13,7 @@ function Skills() {
     >
       <div className="max-w-6xl mx-auto">
 
-        <h2 className="text-4xl font-bold text-pink-400 mb-16 text-center">
+        <h2 className="text-4xl font-bold text-pink-500 mb-16 text-center">
           Tech Stack
         </h2>
 

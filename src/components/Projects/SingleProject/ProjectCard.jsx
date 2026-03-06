@@ -32,7 +32,7 @@ function ProjectCard({ projectName, projectDesc, code, demo, image }) {
             href={code}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-pink-400 transition hover:scale-110"
+            className="hover:text-pink-500 transition hover:scale-110"
           >
             <FaGithub />
           </a>
@@ -42,7 +42,7 @@ function ProjectCard({ projectName, projectDesc, code, demo, image }) {
             href={demo}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-pink-400 transition hover:scale-110"
+            className="hover:text-pink-500 transition hover:scale-110"
           >
             <FiExternalLink />
           </a>

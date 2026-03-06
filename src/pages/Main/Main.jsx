@@ -10,11 +10,10 @@ function Main() {
             <Navbar />        
             <Landing />
             <About />
+            <Education />
             <Skills />
-            
             <Experience />
             <Projects />
-            <Education />
             <Achievement />
             <Services />
             <Blog />

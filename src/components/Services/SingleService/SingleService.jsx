@@ -13,9 +13,9 @@ function SingleService({ title, icon: Icon }) {
     >
       {Icon && (
         <Icon
-          className="text-4xl text-pink-400 mb-6
+          className="text-4xl text-pink-500 mb-6
                      group-hover:scale-110
-                     group-hover:text-pink-300
+                     group-hover:text-pink-500
                      transition-all duration-300"
         />
       )}

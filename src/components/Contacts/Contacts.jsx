@@ -32,7 +32,7 @@ function Contacts() {
 
         {/* LEFT SIDE */}
         <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 shadow-2xl">
-          <h2 className="text-4xl font-bold mb-8 text-pink-400">
+          <h2 className="text-4xl font-bold mb-8 text-pink-500">
             Let's Work Together
           </h2>
 
@@ -61,27 +61,27 @@ function Contacts() {
         <div className="space-y-6 backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 shadow-2xl">
 
           <div className="flex items-center gap-4">
-            <FiAtSign className="text-2xl text-pink-400" />
+            <FiAtSign className="text-2xl text-pink-500" />
             <a
               href={`mailto:${contactsData.email}`}
-              className="text-gray-300 hover:text-pink-400 transition"
+              className="text-gray-300 hover:text-pink-500 transition"
             >
               {contactsData.email}
             </a>
           </div>
 
           <div className="flex items-center gap-4">
-            <FiPhone className="text-2xl text-pink-400" />
+            <FiPhone className="text-2xl text-pink-500" />
             <a
               href={`tel:${contactsData.phone}`}
-              className="text-gray-300 hover:text-pink-400 transition"
+              className="text-gray-300 hover:text-pink-500 transition"
             >
               {contactsData.phone}
             </a>
           </div>
 
           <div className="flex items-center gap-4">
-            <HiOutlineLocationMarker className="text-2xl text-pink-400" />
+            <HiOutlineLocationMarker className="text-2xl text-pink-500" />
             <p className="text-gray-300">{contactsData.address}</p>
           </div>
 
@@ -92,7 +92,7 @@ function Contacts() {
                 href={socialsData.github}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-pink-400 transition hover:scale-110"
+                className="hover:text-pink-500 transition hover:scale-110"
               >
                 <FaGithub />
               </a>
@@ -102,7 +102,7 @@ function Contacts() {
                 href={socialsData.linkedIn}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-pink-400 transition hover:scale-110"
+                className="hover:text-pink-500 transition hover:scale-110"
               >
                 <FaLinkedinIn />
               </a>
@@ -112,7 +112,7 @@ function Contacts() {
                 href={socialsData.twitter}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-pink-400 transition hover:scale-110"
+                className="hover:text-pink-500 transition hover:scale-110"
               >
                 <FaTwitter />
               </a>
@@ -122,7 +122,7 @@ function Contacts() {
                 href={socialsData.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-pink-400 transition hover:scale-110"
+                className="hover:text-pink-500 transition hover:scale-110"
               >
                 <FaInstagram />
               </a>
