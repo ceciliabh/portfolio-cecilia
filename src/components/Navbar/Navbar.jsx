@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 
 const links = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Resume", href: "#resume" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contacts" },
+  { name: "Inicio", href: "#home" },
+  { name: "Sobre mí", href: "#about" },
+  { name: "Experiencia", href: "#experience" },
+  { name: "Proyectos", href: "#projects" },
+  { name: "Contacto", href: "#contacts" },
 ];
 
 function Navbar() {

@@ -21,7 +21,7 @@ function Landing() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center  text-white px-6 overflow-hidden"
+      className="min-h-screen flex items-center justify-center text-white px-6 overflow-hidden"
     >
       <div className="max-w-5xl text-center">
 
@@ -42,7 +42,7 @@ function Landing() {
           transition={{ delay: 0.3 }}
           className="text-pink-500 uppercase tracking-widest mb-4"
         >
-          Fullstack & Frontend Developer
+          Frontend Engineer | Fullstack Developer
         </motion.p>
 
         {/* Title */}
@@ -50,9 +50,9 @@ function Landing() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="text-5xl md:text-6xl font-bold leading-tight"
+          className="md:text-5xl text-4xl font-bold leading-tight"
         >
-          Hi, I'm <span className="text-pink-500">Cecilia Barranco</span>
+          Hola, soy <span className="text-pink-500">Cecilia Barranco</span>
         </motion.h1>
 
         {/* Description */}
@@ -60,11 +60,12 @@ function Landing() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto"
+          className="text-gray-400 mt-6 text-lg text-center max-w-2xl px-40 md:px-0 mx-auto"
         >
-          Frontend Engineer with 4 years of experience building scalable web applications using React, TypeScript and modern JavaScript frameworks.
-          I specialize in frontend architecture, reusable component systems, performance optimization and seamless integration with backend APIs.
-          I have worked on production platforms, e-commerce systems and enterprise integrations, collaborating with backend, QA and design teams to deliver reliable, user-centered products.
+
+        Ingeniera Frontend con más de 4 años de experiencia desarrollando aplicaciones web escalables utilizando React, TypeScript y tecnologías modernas de JavaScript.
+        <br />Me especializo en arquitectura frontend, creación de componentes reutilizables, optimización de rendimiento e integración eficiente con APIs backend.
+        <br />He trabajado en plataformas en producción, sistemas de e-commerce e integraciones empresariales, colaborando con equipos de backend, QA y diseño para entregar productos confiables y centrados en el usuario.
         </motion.p>
 
 
@@ -104,14 +105,14 @@ function Landing() {
             href="#projects"
             className="bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-xl transition"
           >
-            View Projects
+            Ver Proyectos
           </a>
 
           <a
             href="#contacts"
             className="border border-pink-600 px-6 py-3 rounded-xl hover:bg-pink-600 transition"
           >
-            Contact Me
+            Contáctame
           </a>
         </motion.div>
 

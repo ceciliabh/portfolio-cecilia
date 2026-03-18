@@ -1,6 +1,6 @@
 import React from "react";
 
-function SingleService({ title, icon: Icon }) {
+function SingleService({ title, description, icon: Icon }) {
   return (
     <div
       className="bg-white/5 backdrop-blur-xl border border-white/10
@@ -23,6 +23,9 @@ function SingleService({ title, icon: Icon }) {
       <h3 className="text-xl font-semibold text-white tracking-wide">
         {title}
       </h3>
+      <p className="text-gray-400 text-sm mt-3">
+  {description}
+</p>
     </div>
   );
 }

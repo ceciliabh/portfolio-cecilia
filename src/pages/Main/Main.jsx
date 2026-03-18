@@ -10,7 +10,7 @@ function Main() {
             <Navbar />        
             <Landing />
             <About />
-            <Education />
+            {/* <Education /> */}
             <Skills />
             <Experience />
             <Projects />

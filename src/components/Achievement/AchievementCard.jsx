@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineFolder } from "react-icons/ai";
 
-function AchievementCard({ title, details, date, field, image }) {
+function AchievementCard({ title, details, date, field, image, links }) {
   return (
     <div className="bg-white/5 backdrop-blur-xl border border-white/10 
                     rounded-3xl p-8 shadow-2xl 
@@ -12,9 +12,27 @@ function AchievementCard({ title, details, date, field, image }) {
         <h2 className="text-xl font-semibold text-pink-500 mb-3">
           {title}
         </h2>
+
         <p className="text-gray-400 text-sm leading-relaxed">
           {details}
         </p>
+
+        {/* 🔥 LINKS */}
+        {links && (
+          <div className="mt-4 space-y-1">
+            {links.map((link, index) => (
+              <a
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                className="block text-sm text-pink-400 hover:text-pink-300 hover:underline transition"
+              >
+                📄 {link.label} →
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="flex justify-between items-center text-sm text-gray-500">

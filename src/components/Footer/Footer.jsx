@@ -20,9 +20,9 @@ function Footer() {
 
         {/* Right */}
         <p className="flex items-center gap-2">
-          Made with
+          
           <span className="text-pink-500 text-base">❤</span>
-          by {shortName}
+           {shortName}
         </p>
 
       </div>

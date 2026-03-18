@@ -16,8 +16,8 @@ function Contacts() {
   // 🔥 CAMBIA ESTE NÚMERO POR EL TUYO (formato internacional sin +)
   const phoneNumber = "522223538675";
 
-  const whatsappMessage =
-    "Hola Cecilia, vi tu portfolio y me gustaría hablar contigo sobre un proyecto.";
+const whatsappMessage =
+  "Hola Cecilia, vi tu portafolio y me gustaría hablar contigo sobre una oportunidad/proyecto.";
 
   const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     whatsappMessage
@@ -33,13 +33,13 @@ function Contacts() {
         {/* LEFT SIDE */}
         <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 shadow-2xl">
           <h2 className="text-4xl font-bold mb-8 text-pink-500">
-            Let's Work Together
+            Trabajemos Juntos!
           </h2>
 
           <p className="text-gray-400 mb-8 leading-relaxed">
-            I'm open to freelance projects, collaborations, or full-time
-            opportunities. If you have an idea or opportunity in mind,
-            let's connect.
+            Ayudo a construir aplicaciones web modernas, escalables y enfocadas en resultados.
+            Estoy disponible para proyectos freelance, colaboraciones o posiciones full-time.
+            Si buscas mejorar tu producto digital o iniciar uno desde cero, hablemos.
           </p>
 
           <a
@@ -52,7 +52,7 @@ function Contacts() {
                        transition-all duration-300 shadow-xl 
                        hover:shadow-green-500/30 hover:scale-105 w-fit"
           >
-            Message me on WhatsApp
+            Envíame un mensaje por WhatsApp
             <FaWhatsapp className="text-xl group-hover:rotate-12 transition-transform duration-300" />
           </a>
         </div>
@@ -85,7 +85,6 @@ function Contacts() {
             <p className="text-gray-300">{contactsData.address}</p>
           </div>
 
-          {/* Socials */}
           <div className="flex gap-6 mt-8 text-2xl text-gray-400">
             {socialsData.github && (
               <a
