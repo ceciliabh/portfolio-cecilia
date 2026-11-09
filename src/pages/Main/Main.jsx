@@ -1,25 +1,21 @@
-import React from 'react'
-// import { Helmet } from 'react-helmet'
-
-import { Navbar, Footer, Landing, About, Skills, Blog, Education, Experience, Contacts, Projects, Services, Achievement } from '../../components'
-import { headerData } from '../../data/headerData'
+import { Navbar, Footer, Landing, About, Skills, Experience, Contacts, Projects, Services, Achievement } from '../../components'
 
 function Main() {
     return (
-        <div>
-            <Navbar />        
-            <Landing />
-            <About />
-            {/* <Education /> */}
-            <Skills />
-            <Experience />
-            <Projects />
-            <Achievement />
-            <Services />
-            <Blog />
-            <Contacts />
+        <>
+            <Navbar />
+            <main>
+                <Landing />
+                <About />
+                <Experience />
+                <Projects />
+                <Skills />
+                <Services />
+                <Achievement />
+                <Contacts />
+            </main>
             <Footer />
-        </div>
+        </>
     )
 }
 

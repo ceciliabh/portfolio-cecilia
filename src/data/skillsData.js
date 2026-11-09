@@ -106,3 +106,11 @@
     Webex
     Wordpress
 */
+
+// Agrupado por área para la sección de Skills (el nombre debe coincidir con skillsImage cuando haya icono)
+export const skillGroups = [
+    { title: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Angular', 'Tailwind', 'HTML', 'CSS', 'MaterialUI', 'Bootstrap'] },
+    { title: 'Móvil', items: ['React Native', 'Flutter'] },
+    { title: 'Backend y datos', items: ['.NET Core', 'Node.js', 'Python', 'Django', 'PHP', 'PostgreSQL', 'MySQL', 'Firebase'] },
+    { title: 'Cloud y herramientas', items: ['GCP', 'AWS', 'Azure', 'Git', 'Figma', 'Wordpress'] },
+]

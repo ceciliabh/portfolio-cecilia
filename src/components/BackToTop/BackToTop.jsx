@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { IoIosArrowDropupCircle } from "react-icons/io";
+import { FiArrowUp } from "react-icons/fi";
 
 function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisible = () => {
-      setVisible(window.scrollY > 300);
-    };
-
-    window.addEventListener("scroll", toggleVisible);
-    return () => window.removeEventListener("scroll", toggleVisible);
+    const onScroll = () => setVisible(window.scrollY > 600);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
   if (!visible) return null;
 
   return (
     <button
-      onClick={scrollToTop}
-      className="fixed bottom-8 right-8 text-pink-500 text-5xl hover:scale-110 transition"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Volver arriba"
+      className="fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-line/25 bg-bg/80 text-ink backdrop-blur transition-colors hover:border-accent hover:text-accent"
     >
-      <IoIosArrowDropupCircle />
+      <FiArrowUp />
     </button>
   );
 }

@@ -1,145 +1,98 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { experienceData } from "../../data/experienceData";
+import { socialsData } from "../../data/socialsData";
+import { parseMonth } from "../../utils/period";
 
-const techStack = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "JavaScript",
-  "Angular",
-  ".NET Core",
-  "Node.js",
-  "PostgreSQL",
-  "WordPress",
-  "Tailwind CSS",
-];
-
-function Landing() {
-  const [isPaused, setIsPaused] = useState(false);
+// Pista de carrera profesional: cada rol es una barra posicionada por sus fechas reales.
+function CareerTrack() {
+  const reduce = useReducedMotion();
+  const roles = [...experienceData].reverse();
+  const starts = roles.map((r) => parseMonth(r.startYear));
+  const ends = roles.map((r) => parseMonth(r.endYear) + 1);
+  const firstYear = Math.floor(Math.min(...starts) / 12);
+  const min = firstYear * 12;
+  const max = Math.max(...ends) + 2;
+  const pct = (m) => ((m - min) / (max - min)) * 100;
+  const years = [];
+  for (let y = firstYear; y * 12 < max; y++) years.push(y);
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center text-white px-6 overflow-hidden"
-    >
-      <div className="max-w-5xl text-center">
-
-        {/* Emoji */}
-        <motion.p
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl uppercase tracking-widest mb-2"
-        >
-          👩‍💻
-        </motion.p>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-pink-500 uppercase tracking-widest mb-4"
-        >
-          Frontend Engineer | Fullstack Developer
-        </motion.p>
-
-        {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="md:text-5xl text-4xl font-bold leading-tight"
-        >
-          Hola, soy <span className="text-pink-500">Cecilia Barranco</span>
-        </motion.h1>
-
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="text-gray-400 mt-6 text-lg text-center max-w-2xl px-40 md:px-0 mx-auto"
-        >
-
-        Ingeniera Frontend con más de 4 años de experiencia desarrollando aplicaciones web escalables utilizando React, TypeScript y tecnologías modernas de JavaScript.
-        <br />Me especializo en arquitectura frontend, creación de componentes reutilizables, optimización de rendimiento e integración eficiente con APIs backend.
-        <br />He trabajado en plataformas en producción, sistemas de e-commerce e integraciones empresariales, colaborando con equipos de backend, QA y diseño para entregar productos confiables y centrados en el usuario.
-        </motion.p>
-
-
-        {/* 🔥 Carrusel automático */}
-        <div
-          className="mt-14 overflow-hidden"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <motion.div
-            animate={{
-              x: isPaused ? 0 : ["0%", "-50%"],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 10,
-              ease: "linear",
-            }}
-            className="flex gap-16 whitespace-nowrap text-gray-500 text-xl"
-          >
-            {[...techStack, ...techStack].map((tech, index) => (
-              <span key={index} className="hover:text-pink-500 transition">
-                {tech}
-              </span>
-            ))}
-          </motion.div>
+    <div className="mt-20 border-t border-line/15 pt-8" role="img" aria-label="Línea de tiempo de mi trayectoria profesional">
+      <div className="grid gap-x-6 md:grid-cols-[13rem_1fr]">
+        <div className="hidden md:block" />
+        <div className="relative mb-3 h-5 font-mono text-xs text-muted">
+          {years.map((y) => (
+            <span key={y} className="absolute -translate-x-1/2 first:translate-x-0" style={{ left: `${pct(y * 12)}%` }}>
+              {y}
+            </span>
+          ))}
         </div>
+      </div>
 
-                {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="flex justify-center gap-6 mt-20"
-        >
-          <a
-            href="#projects"
-            className="bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-xl transition"
-          >
-            Ver Proyectos
+      <div className="space-y-4">
+        {roles.map((r, i) => (
+          <div key={i} className="grid items-center gap-x-6 gap-y-1.5 md:grid-cols-[13rem_1fr]">
+            <div className="text-sm">
+              <span className="text-ink">{r.company}</span>
+              <span className="block text-xs text-muted">{r.jobtitle.split("–")[0].trim()}</span>
+            </div>
+            <div className="relative h-7">
+              {years.map((y) => (
+                <span key={y} className="absolute inset-y-0 w-px bg-line/10" style={{ left: `${pct(y * 12)}%` }} />
+              ))}
+              <motion.span
+                className="absolute inset-y-1 origin-left rounded-sm bg-gradient-to-r from-signal to-accent"
+                style={{ left: `${pct(starts[i])}%`, width: `${pct(ends[i]) - pct(starts[i])}%` }}
+                initial={reduce ? false : { scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.7, delay: 0.5 + i * 0.25, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Landing() {
+  return (
+    <section id="home" className="mx-auto max-w-6xl px-6 pb-24 pt-36 md:pt-44">
+      <p className="inline-flex items-center gap-2 rounded-full border border-line/15 px-3 py-1 text-sm text-muted">
+        <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_10px_rgb(var(--accent))]" />
+        Disponible para nuevos proyectos
+      </p>
+
+      <h1 className="mt-8 max-w-4xl text-[clamp(2.6rem,7vw,5.5rem)] font-semibold leading-[1.02]">
+        Construyo interfaces que escalan y llegan a producción.
+      </h1>
+
+      <div className="mt-8 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+        <p className="max-w-xl text-lg leading-relaxed text-muted">
+          Soy <span className="text-ink">Cecilia Barranco</span>, ingeniera Frontend y Fullstack con más de 4 años de
+          experiencia en React, TypeScript y .NET Core. Plataformas cívicas, e-commerce e integraciones empresariales B2B.
+        </p>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <a href="#projects" className="rounded-full bg-accent px-6 py-3 font-medium text-bg transition-opacity hover:opacity-90">
+            Ver proyectos
           </a>
-
-          <a
-            href="#contacts"
-            className="border border-pink-600 px-6 py-3 rounded-xl hover:bg-pink-600 transition"
-          >
+          <a href="#contacts" className="rounded-full border border-line/25 px-6 py-3 transition-colors hover:border-accent hover:text-accent">
             Contáctame
           </a>
-        </motion.div>
-
-        {/* Social Icons */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="flex justify-center gap-6 mt-12 text-2xl text-gray-400"
-        >
-          <a
-            href="https://github.com/ceciliabh"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaGithub className="hover:text-pink-500 transition" />
+          <span className="mx-1 hidden h-6 w-px bg-line/20 sm:block" />
+          <a href={socialsData.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line/25 px-4 py-3 text-muted transition-colors hover:border-accent hover:text-ink">
+            <FaGithub aria-hidden="true" /> GitHub
           </a>
-
-          <a
-            href="https://www.linkedin.com/in/cecilia-barranco/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaLinkedinIn className="hover:text-pink-500 transition" />
+          <a href={socialsData.linkedIn} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line/25 px-4 py-3 text-muted transition-colors hover:border-accent hover:text-ink">
+            <FaLinkedinIn aria-hidden="true" /> LinkedIn
           </a>
-        </motion.div>
+        </div>
       </div>
+
+      <CareerTrack />
     </section>
   );
 }

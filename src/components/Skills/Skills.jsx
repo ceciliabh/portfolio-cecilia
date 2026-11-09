@@ -1,67 +1,26 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { skillsData } from "../../data/skillsData";
-import { skillsImage } from "../../utils/skillsImage";
+import React from "react";
+import { skillGroups } from "../../data/skillsData";
 
 function Skills() {
-  const [isPaused, setIsPaused] = useState(false);
-
   return (
-    <section
-      id="skills"
-      className="relative py-24 px-6 overflow-hidden"
-    >
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="mx-auto max-w-6xl px-6 py-24">
+      <h2 className="text-4xl font-semibold md:text-5xl">Stack</h2>
+      <p className="mt-4 max-w-xl text-muted">Herramientas con las que he entregado producto, agrupadas por área.</p>
 
-        <h2 className="text-4xl font-bold text-pink-500 mb-16 text-center">
-          Tech Stack
-        </h2>
-
-        <div
-          className="overflow-hidden"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <motion.div
-            animate={{
-              x: isPaused ? 0 : ["0%", "-90%"],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 20,
-              ease: "linear",
-            }}
-            className="flex gap-12"
-          >
-            {[...skillsData, ...skillsData].map((skill, index) => (
-              <div
-                key={index}
-                className="bg-white/5 backdrop-blur-xl border border-white/10
-                           rounded-3xl p-8 min-w-[160px]
-                           flex flex-col items-center justify-center
-                           shadow-2xl
-                           hover:-translate-y-2
-                           hover:border-pink-500/40
-                           hover:shadow-pink-500/10
-                           transition-all duration-300 group"
-              >
-                <img
-                  src={skillsImage(skill)}
-                  alt={skill}
-                  className="w-12 h-12 object-contain mb-5
-                             group-hover:scale-110
-                             transition-transform duration-300"
-                />
-
-                <h3 className="text-gray-400 text-sm font-medium text-center tracking-wide">
-                  {skill}
-                </h3>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-      </div>
+      <dl className="mt-14 border-t border-line/15">
+        {skillGroups.map((group) => (
+          <div key={group.title} className="grid gap-4 border-b border-line/15 py-7 md:grid-cols-[14rem_1fr] md:gap-12">
+            <dt className="font-display text-xl font-medium">{group.title}</dt>
+            <dd className="flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <span key={item} className="rounded-md border border-line/15 bg-surface/50 px-3 py-1.5 text-sm text-muted transition-colors hover:border-accent/50 hover:text-ink">
+                  {item}
+                </span>
+              ))}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }

@@ -1,0 +1,2573 @@
+From f6875198bd1d20fed4f1c7cd1945001cff7349c7 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 9 Nov 2026 23:45:40 +0000
+Subject: [PATCH] =?UTF-8?q?Redise=C3=B1o:=20portafolio=20minimalista=20tec?=
+ =?UTF-8?q?h=20con=20foco=20en=20experiencia?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ index.html                                    |  11 +-
+ package-lock.json                             | 675 +-----------------
+ package.json                                  |   7 +-
+ public/favicon.svg                            |   1 +
+ src/App.css                                   |  11 -
+ src/App.jsx                                   |  25 +-
+ src/components/About/About.jsx                |  50 +-
+ src/components/Achievement/Achievement.jsx    |  22 +-
+ .../Achievement/AchievementCard.jsx           |  61 +-
+ src/components/BackToTop/BackToTop.jsx        |  27 +-
+ src/components/Contacts/Contacts.jsx          | 166 ++---
+ src/components/Experience/Experience.jsx      |  68 +-
+ src/components/Experience/ExperienceCard.jsx  |  83 ++-
+ src/components/Footer/Footer.jsx              |  28 +-
+ src/components/Landing/Landing.jsx            | 209 +++---
+ src/components/Navbar/Navbar.jsx              |  93 +--
+ src/components/ParticlesBackground.jsx        |  28 -
+ src/components/Projects/Projects.jsx          |  19 +-
+ .../Projects/SingleProject/ProjectCard.jsx    |  87 +--
+ src/components/Services/Services.jsx          |  25 +-
+ .../Services/SingleService/SingleService.jsx  |  30 +-
+ src/components/Skills/Skills.jsx              |  81 +--
+ src/data/experienceData.js                    |  11 +
+ src/data/skillsData.js                        |   8 +
+ src/index.css                                 |  70 +-
+ src/main.jsx                                  |   3 +
+ src/pages/Main/Main.jsx                       |  32 +-
+ src/utils/period.js                           |  17 +
+ tailwind.config.js                            |  22 +-
+ 29 files changed, 601 insertions(+), 1369 deletions(-)
+ create mode 100644 public/favicon.svg
+ delete mode 100644 src/App.css
+ delete mode 100644 src/components/ParticlesBackground.jsx
+ create mode 100644 src/utils/period.js
+
+diff --git a/index.html b/index.html
+index 9370145..11973d4 100644
+--- a/index.html
++++ b/index.html
+@@ -1,13 +1,12 @@
+ <!doctype html>
+-<html lang="en">
++<html lang="es">
+   <head>
+     <meta charset="UTF-8" />
+-    <link rel="preconnect" href="https://fonts.googleapis.com">
+-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
++    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>portfolio-cecilia</title>
++    <meta name="theme-color" content="#0D0A1F" />
++    <meta name="description" content="Cecilia Barranco, ingeniera Frontend y Fullstack con más de 4 años de experiencia en React, TypeScript y .NET Core." />
++    <title>Cecilia Barranco | Frontend & Fullstack Engineer</title>
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/package-lock.json b/package-lock.json
+index 68d9c78..cb1657d 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -8,13 +8,14 @@
+       "name": "portfolio-cecilia",
+       "version": "0.0.0",
+       "dependencies": {
+-        "@tsparticles/react": "^3.0.0",
++        "@fontsource-variable/bricolage-grotesque": "^5.3.0",
++        "@fontsource-variable/geist": "^5.3.0",
++        "@fontsource-variable/geist-mono": "^5.3.0",
+         "framer-motion": "^12.34.2",
+         "react": "^19.2.0",
+         "react-dom": "^19.2.0",
+         "react-icons": "^5.5.0",
+-        "react-router-dom": "^7.13.0",
+-        "tsparticles": "^3.9.1"
++        "react-router-dom": "^7.13.0"
+       },
+       "devDependencies": {
+         "@eslint/js": "^9.39.1",
+@@ -75,7 +76,6 @@
+       "integrity": "sha512-CGOfOJqWjg2qW/Mb6zNsDm+u5vFQ8DxXfbM09z69p5Z6+mE1ikP2jUXw+j42Pf1XTYED2Rni5f95npYeuwMDQA==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@babel/code-frame": "^7.29.0",
+         "@babel/generator": "^7.29.0",
+@@ -926,6 +926,33 @@
+         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+       }
+     },
++    "node_modules/@fontsource-variable/bricolage-grotesque": {
++      "version": "5.3.0",
++      "resolved": "https://registry.npmjs.org/@fontsource-variable/bricolage-grotesque/-/bricolage-grotesque-5.3.0.tgz",
++      "integrity": "sha512-TLi9Q4hJjS2UvoTMRSS2nHu6c4R56lAw60NR9QYtVRCHn0XtsFpiEhNffZ8Glsoxu6wEEwLKBP8lb94J52PNBA==",
++      "license": "OFL-1.1",
++      "funding": {
++        "url": "https://github.com/sponsors/ayuhito"
++      }
++    },
++    "node_modules/@fontsource-variable/geist": {
++      "version": "5.3.0",
++      "resolved": "https://registry.npmjs.org/@fontsource-variable/geist/-/geist-5.3.0.tgz",
++      "integrity": "sha512-j0m+vLQuG5XAYoHtGCVu0spvlGreR3EzpECUVzkFmI1mTVnAO38l/NEPDCFgZ177JxzYJCLSmTQibIiYPilGrA==",
++      "license": "OFL-1.1",
++      "funding": {
++        "url": "https://github.com/sponsors/ayuhito"
++      }
++    },
++    "node_modules/@fontsource-variable/geist-mono": {
++      "version": "5.3.0",
++      "resolved": "https://registry.npmjs.org/@fontsource-variable/geist-mono/-/geist-mono-5.3.0.tgz",
++      "integrity": "sha512-vBbuwDEo9AkrqADMXOrlAR3DFcJi4/JxeuU43FoiQERnNwsfXNnvxvReZG02cQKmyk4DZkZdBZX3oTDvy2zBAw==",
++      "license": "OFL-1.1",
++      "funding": {
++        "url": "https://github.com/sponsors/ayuhito"
++      }
++    },
+     "node_modules/@humanfs/core": {
+       "version": "0.19.1",
+       "resolved": "https://registry.npmjs.org/@humanfs/core/-/core-0.19.1.tgz",
+@@ -1423,600 +1450,6 @@
+         "win32"
+       ]
+     },
+-    "node_modules/@tsparticles/basic": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/basic/-/basic-3.9.1.tgz",
+-      "integrity": "sha512-ijr2dHMx0IQHqhKW3qA8tfwrR2XYbbWYdaJMQuBo2CkwBVIhZ76U+H20Y492j/NXpd1FUnt2aC0l4CEVGVGdeQ==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1",
+-        "@tsparticles/move-base": "3.9.1",
+-        "@tsparticles/plugin-hex-color": "3.9.1",
+-        "@tsparticles/plugin-hsl-color": "3.9.1",
+-        "@tsparticles/plugin-rgb-color": "3.9.1",
+-        "@tsparticles/shape-circle": "3.9.1",
+-        "@tsparticles/updater-color": "3.9.1",
+-        "@tsparticles/updater-opacity": "3.9.1",
+-        "@tsparticles/updater-out-modes": "3.9.1",
+-        "@tsparticles/updater-size": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/engine": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/engine/-/engine-3.9.1.tgz",
+-      "integrity": "sha512-DpdgAhWMZ3Eh2gyxik8FXS6BKZ8vyea+Eu5BC4epsahqTGY9V3JGGJcXC6lRJx6cPMAx1A0FaQAojPF3v6rkmQ==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "hasInstallScript": true,
+-      "license": "MIT",
+-      "peer": true
+-    },
+-    "node_modules/@tsparticles/interaction-external-attract": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-attract/-/interaction-external-attract-3.9.1.tgz",
+-      "integrity": "sha512-5AJGmhzM9o4AVFV24WH5vSqMBzOXEOzIdGLIr+QJf4fRh9ZK62snsusv/ozKgs2KteRYQx+L7c5V3TqcDy2upg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-bounce": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-bounce/-/interaction-external-bounce-3.9.1.tgz",
+-      "integrity": "sha512-bv05+h70UIHOTWeTsTI1AeAmX6R3s8nnY74Ea6p6AbQjERzPYIa0XY19nq/hA7+Nrg+EissP5zgoYYeSphr85A==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-bubble": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-bubble/-/interaction-external-bubble-3.9.1.tgz",
+-      "integrity": "sha512-tbd8ox/1GPl+zr+KyHQVV1bW88GE7OM6i4zql801YIlCDrl9wgTDdDFGIy9X7/cwTvTrCePhrfvdkUamXIribQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-connect": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-connect/-/interaction-external-connect-3.9.1.tgz",
+-      "integrity": "sha512-sq8YfUNsIORjXHzzW7/AJQtfi/qDqLnYG2qOSE1WOsog39MD30RzmiOloejOkfNeUdcGUcfsDgpUuL3UhzFUOA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-grab": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-grab/-/interaction-external-grab-3.9.1.tgz",
+-      "integrity": "sha512-QwXza+sMMWDaMiFxd8y2tJwUK6c+nNw554+/9+tEZeTTk2fCbB0IJ7p/TH6ZGWDL0vo2muK54Njv2fEey191ow==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-pause": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-pause/-/interaction-external-pause-3.9.1.tgz",
+-      "integrity": "sha512-Gzv4/FeNir0U/tVM9zQCqV1k+IAgaFjDU3T30M1AeAsNGh/rCITV2wnT7TOGFkbcla27m4Yxa+Fuab8+8pzm+g==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-push": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-push/-/interaction-external-push-3.9.1.tgz",
+-      "integrity": "sha512-GvnWF9Qy4YkZdx+WJL2iy9IcgLvzOIu3K7aLYJFsQPaxT8d9TF8WlpoMlWKnJID6H5q4JqQuMRKRyWH8aAKyQw==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-remove": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-remove/-/interaction-external-remove-3.9.1.tgz",
+-      "integrity": "sha512-yPThm4UDWejDOWW5Qc8KnnS2EfSo5VFcJUQDWc1+Wcj17xe7vdSoiwwOORM0PmNBzdDpSKQrte/gUnoqaUMwOA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-repulse": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-repulse/-/interaction-external-repulse-3.9.1.tgz",
+-      "integrity": "sha512-/LBppXkrMdvLHlEKWC7IykFhzrz+9nebT2fwSSFXK4plEBxDlIwnkDxd3FbVOAbnBvx4+L8+fbrEx+RvC8diAw==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-slow": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-slow/-/interaction-external-slow-3.9.1.tgz",
+-      "integrity": "sha512-1ZYIR/udBwA9MdSCfgADsbDXKSFS0FMWuPWz7bm79g3sUxcYkihn+/hDhc6GXvNNR46V1ocJjrj0u6pAynS1KQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-external-trail": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-external-trail/-/interaction-external-trail-3.9.1.tgz",
+-      "integrity": "sha512-Au0v2oiqfKTemI/4bzjD4dUXzIngB5Q2T4nJcMCYpP24uZfwZh5xTjUMH7gyJyyaRTdMl9IJrp8ySjyYbLfeGg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-particles-attract": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-particles-attract/-/interaction-particles-attract-3.9.1.tgz",
+-      "integrity": "sha512-CYYYowJuGwRLUixQcSU/48PTKM8fCUYThe0hXwQ+yRMLAn053VHzL7NNZzKqEIeEyt5oJoy9KcvubjKWbzMBLQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-particles-collisions": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-particles-collisions/-/interaction-particles-collisions-3.9.1.tgz",
+-      "integrity": "sha512-ggGyjW/3v1yxvYW1IF1EMT15M6w31y5zfNNUPkqd/IXRNPYvm0Z0ayhp+FKmz70M5p0UxxPIQHTvAv9Jqnuj8w==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/interaction-particles-links": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/interaction-particles-links/-/interaction-particles-links-3.9.1.tgz",
+-      "integrity": "sha512-MsLbMjy1vY5M5/hu/oa5OSRZAUz49H3+9EBMTIOThiX+a+vpl3sxc9AqNd9gMsPbM4WJlub8T6VBZdyvzez1Vg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/move-base": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/move-base/-/move-base-3.9.1.tgz",
+-      "integrity": "sha512-X4huBS27d8srpxwOxliWPUt+NtCwY+8q/cx1DvQxyqmTA8VFCGpcHNwtqiN+9JicgzOvSuaORVqUgwlsc7h4pQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/move-parallax": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/move-parallax/-/move-parallax-3.9.1.tgz",
+-      "integrity": "sha512-whlOR0bVeyh6J/hvxf/QM3DqvNnITMiAQ0kro6saqSDItAVqg4pYxBfEsSOKq7EhjxNvfhhqR+pFMhp06zoCVA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/plugin-absorbers": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/plugin-absorbers/-/plugin-absorbers-3.9.1.tgz",
+-      "integrity": "sha512-q9SQllpbPPgw1+euxHPYCFawOVUazQkkwnleiIgpYSiimlCyjIdwGnFPSNe1Sypzqmr2h6oOyX2vkK5ZVNEu8A==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/plugin-easing-quad": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/plugin-easing-quad/-/plugin-easing-quad-3.9.1.tgz",
+-      "integrity": "sha512-C2UJOca5MTDXKUTBXj30Kiqr5UyID+xrY/LxicVWWZPczQW2bBxbIbfq9ULvzGDwBTxE2rdvIB8YFKmDYO45qw==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/plugin-emitters": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/plugin-emitters/-/plugin-emitters-3.9.1.tgz",
+-      "integrity": "sha512-h7opR8SoFWBmVHceDLJUerLENaPfkJSh2zQYvzmLj2L+V3VLS1QDgty+4QZVeZfqNROmgQw2eLFA5El1E0sqqw==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/plugin-emitters-shape-circle": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/plugin-emitters-shape-circle/-/plugin-emitters-shape-circle-3.9.1.tgz",
+-      "integrity": "sha512-z+9MsAPWr++sNz6N6303rRDjusW0BIPhHY51E5eXGDcRdOqrESDs6y99AJ/6Kdb/PpibCIYjFY9jVi2JJADPRA==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1",
+-        "@tsparticles/plugin-emitters": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/plugin-emitters-shape-square": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/plugin-emitters-shape-square/-/plugin-emitters-shape-square-3.9.1.tgz",
+-      "integrity": "sha512-dhA1c7FKs19B8lgTf25OTA3JoptNA+rjorsqCFuY1BZDI8g9E8DNqikUge14/W7nZN96+98hY+ghxSl4K2YsgA==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1",
+-        "@tsparticles/plugin-emitters": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/plugin-hex-color": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/plugin-hex-color/-/plugin-hex-color-3.9.1.tgz",
+-      "integrity": "sha512-vZgZ12AjUicJvk7AX4K2eAmKEQX/D1VEjEPFhyjbgI7A65eX72M465vVKIgNA6QArLZ1DLs7Z787LOE6GOBWsg==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/plugin-hsl-color": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/plugin-hsl-color/-/plugin-hsl-color-3.9.1.tgz",
+-      "integrity": "sha512-jJd1iGgRwX6eeNjc1zUXiJivaqC5UE+SC2A3/NtHwwoQrkfxGWmRHOsVyLnOBRcCPgBp/FpdDe6DIDjCMO715w==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/plugin-rgb-color": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/plugin-rgb-color/-/plugin-rgb-color-3.9.1.tgz",
+-      "integrity": "sha512-SBxk7f1KBfXeTnnklbE2Hx4jBgh6I6HOtxb+Os1gTp0oaghZOkWcCD2dP4QbUu7fVNCMOcApPoMNC8RTFcy9wQ==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/react": {
+-      "version": "3.0.0",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/react/-/react-3.0.0.tgz",
+-      "integrity": "sha512-hjGEtTT1cwv6BcjL+GcVgH++KYs52bIuQGW3PWv7z3tMa8g0bd6RI/vWSLj7p//NZ3uTjEIeilYIUPBh7Jfq/Q==",
+-      "peerDependencies": {
+-        "@tsparticles/engine": "^3.0.2",
+-        "react": ">=16.8.0",
+-        "react-dom": ">=16.8.0"
+-      }
+-    },
+-    "node_modules/@tsparticles/shape-circle": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/shape-circle/-/shape-circle-3.9.1.tgz",
+-      "integrity": "sha512-DqZFLjbuhVn99WJ+A9ajz9YON72RtCcvubzq6qfjFmtwAK7frvQeb6iDTp6Ze9FUipluxVZWVRG4vWTxi2B+/g==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/shape-emoji": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/shape-emoji/-/shape-emoji-3.9.1.tgz",
+-      "integrity": "sha512-ifvY63usuT+hipgVHb8gelBHSeF6ryPnMxAAEC1RGHhhXfpSRWMtE6ybr+pSsYU52M3G9+TF84v91pSwNrb9ZQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/shape-image": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/shape-image/-/shape-image-3.9.1.tgz",
+-      "integrity": "sha512-fCA5eme8VF3oX8yNVUA0l2SLDKuiZObkijb0z3Ky0qj1HUEVlAuEMhhNDNB9E2iELTrWEix9z7BFMePp2CC7AA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/shape-line": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/shape-line/-/shape-line-3.9.1.tgz",
+-      "integrity": "sha512-wT8NSp0N9HURyV05f371cHKcNTNqr0/cwUu6WhBzbshkYGy1KZUP9CpRIh5FCrBpTev34mEQfOXDycgfG0KiLQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/shape-polygon": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/shape-polygon/-/shape-polygon-3.9.1.tgz",
+-      "integrity": "sha512-dA77PgZdoLwxnliH6XQM/zF0r4jhT01pw5y7XTeTqws++hg4rTLV9255k6R6eUqKq0FPSW1/WBsBIl7q/MmrqQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/shape-square": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/shape-square/-/shape-square-3.9.1.tgz",
+-      "integrity": "sha512-DKGkDnRyZrAm7T2ipqNezJahSWs6xd9O5LQLe5vjrYm1qGwrFxJiQaAdlb00UNrexz1/SA7bEoIg4XKaFa7qhQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/shape-star": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/shape-star/-/shape-star-3.9.1.tgz",
+-      "integrity": "sha512-kdMJpi8cdeb6vGrZVSxTG0JIjCwIenggqk0EYeKAwtOGZFBgL7eHhF2F6uu1oq8cJAbXPujEoabnLsz6mW8XaA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/shape-text": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/shape-text/-/shape-text-3.9.1.tgz",
+-      "integrity": "sha512-oNsLHI0lGkIXoUw3W598iwd7dtoHCDrwpwJRGnQzgfk6T5a9dCpSD5vDeQN89lr3BUbVui4lhxq+/TyC64oAqA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/slim": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/slim/-/slim-3.9.1.tgz",
+-      "integrity": "sha512-CL5cDmADU7sDjRli0So+hY61VMbdroqbArmR9Av+c1Fisa5ytr6QD7Jv62iwU2S6rvgicEe9OyRmSy5GIefwZw==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/basic": "3.9.1",
+-        "@tsparticles/engine": "3.9.1",
+-        "@tsparticles/interaction-external-attract": "3.9.1",
+-        "@tsparticles/interaction-external-bounce": "3.9.1",
+-        "@tsparticles/interaction-external-bubble": "3.9.1",
+-        "@tsparticles/interaction-external-connect": "3.9.1",
+-        "@tsparticles/interaction-external-grab": "3.9.1",
+-        "@tsparticles/interaction-external-pause": "3.9.1",
+-        "@tsparticles/interaction-external-push": "3.9.1",
+-        "@tsparticles/interaction-external-remove": "3.9.1",
+-        "@tsparticles/interaction-external-repulse": "3.9.1",
+-        "@tsparticles/interaction-external-slow": "3.9.1",
+-        "@tsparticles/interaction-particles-attract": "3.9.1",
+-        "@tsparticles/interaction-particles-collisions": "3.9.1",
+-        "@tsparticles/interaction-particles-links": "3.9.1",
+-        "@tsparticles/move-parallax": "3.9.1",
+-        "@tsparticles/plugin-easing-quad": "3.9.1",
+-        "@tsparticles/shape-emoji": "3.9.1",
+-        "@tsparticles/shape-image": "3.9.1",
+-        "@tsparticles/shape-line": "3.9.1",
+-        "@tsparticles/shape-polygon": "3.9.1",
+-        "@tsparticles/shape-square": "3.9.1",
+-        "@tsparticles/shape-star": "3.9.1",
+-        "@tsparticles/updater-life": "3.9.1",
+-        "@tsparticles/updater-rotate": "3.9.1",
+-        "@tsparticles/updater-stroke-color": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-color": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-color/-/updater-color-3.9.1.tgz",
+-      "integrity": "sha512-XGWdscrgEMA8L5E7exsE0f8/2zHKIqnTrZymcyuFBw2DCB6BIV+5z6qaNStpxrhq3DbIxxhqqcybqeOo7+Alpg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-destroy": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-destroy/-/updater-destroy-3.9.1.tgz",
+-      "integrity": "sha512-MjMzEhZwCQIbxO6ZRM0eXsHVwmlXuUqwC43WCPZCpjhK3AJrMu3KR4xsJieFTWIbVNguAvbgoTB10FfJOUU5VA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-life": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-life/-/updater-life-3.9.1.tgz",
+-      "integrity": "sha512-Oi8aF2RIwMMsjssUkCB6t3PRpENHjdZf6cX92WNfAuqXtQphr3OMAkYFJFWkvyPFK22AVy3p/cFt6KE5zXxwAA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-opacity": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-opacity/-/updater-opacity-3.9.1.tgz",
+-      "integrity": "sha512-w778LQuRZJ+IoWzeRdrGykPYSSaTeWfBvLZ2XwYEkh/Ss961InOxZKIpcS6i5Kp/Zfw0fS1ZAuqeHwuj///Osw==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-out-modes": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-out-modes/-/updater-out-modes-3.9.1.tgz",
+-      "integrity": "sha512-cKQEkAwbru+hhKF+GTsfbOvuBbx2DSB25CxOdhtW2wRvDBoCnngNdLw91rs+0Cex4tgEeibkebrIKFDDE6kELg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-roll": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-roll/-/updater-roll-3.9.1.tgz",
+-      "integrity": "sha512-zl4JeM3gUBJ0uttmIsond3lrZ3f3AkItFeS0Lhj/7jiCKfUoRyyOMrcBk8R1AhW7lI+7ko1iBs3jhO0jnxz9vg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-rotate": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-rotate/-/updater-rotate-3.9.1.tgz",
+-      "integrity": "sha512-9BfKaGfp28JN82MF2qs6Ae/lJr9EColMfMTHqSKljblwbpVDHte4umuwKl3VjbRt87WD9MGtla66NTUYl+WxuQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-size": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-size/-/updater-size-3.9.1.tgz",
+-      "integrity": "sha512-3NSVs0O2ApNKZXfd+y/zNhTXSFeG1Pw4peI8e6z/q5+XLbmue9oiEwoPy/tQLaark3oNj3JU7Q903ZijPyXSzw==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-stroke-color": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-stroke-color/-/updater-stroke-color-3.9.1.tgz",
+-      "integrity": "sha512-3x14+C2is9pZYTg9T2TiA/aM1YMq4wLdYaZDcHm3qO30DZu5oeQq0rm/6w+QOGKYY1Z3Htg9rlSUZkhTHn7eDA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-tilt": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-tilt/-/updater-tilt-3.9.1.tgz",
+-      "integrity": "sha512-PB2yaoyXRmSk4iIVgjtRrzOxXMK9mjeAQHIJGtT4faq46Z8cbIIEFgjTwqrUV8qOrNg/h4sm5NE/s0qsTYjp1Q==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-twinkle": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-twinkle/-/updater-twinkle-3.9.1.tgz",
+-      "integrity": "sha512-xgTcYr6LmP44IPIBeQmEExN2Y5Nfl3ikmC08eOh5nZy/ta6ORP+JTsprrnfuv/O2DwTyoqFLkZ16hZfkdc1yOQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+-    "node_modules/@tsparticles/updater-wobble": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/@tsparticles/updater-wobble/-/updater-wobble-3.9.1.tgz",
+-      "integrity": "sha512-c99Ogy9q4QWO+zsDXol0UnpUwZiY2UucFb8ltuDv9AlbGUeprygoub8jhgT5pEDv+GdzWOJGSgq7rfgv9cHBrg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1"
+-      }
+-    },
+     "node_modules/@types/babel__core": {
+       "version": "7.20.5",
+       "resolved": "https://registry.npmjs.org/@types/babel__core/-/babel__core-7.20.5.tgz",
+@@ -2082,7 +1515,6 @@
+       "integrity": "sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "csstype": "^3.2.2"
+       }
+@@ -2124,7 +1556,6 @@
+       "integrity": "sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "acorn": "bin/acorn"
+       },
+@@ -2334,7 +1765,6 @@
+         }
+       ],
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "baseline-browser-mapping": "^2.9.0",
+         "caniuse-lite": "^1.0.30001759",
+@@ -2654,7 +2084,6 @@
+       "integrity": "sha512-LEyamqS7W5HB3ujJyvi0HQK/dtVINZvd5mAAp9eT5S/ujByGjiZLCzPcHVzuXbpJDJF/cxwHlfceVUDZ2lnSTw==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "@eslint-community/eslint-utils": "^4.8.0",
+         "@eslint-community/regexpp": "^4.12.1",
+@@ -3230,7 +2659,6 @@
+       "integrity": "sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "bin": {
+         "jiti": "bin/jiti.js"
+       }
+@@ -3626,7 +3054,6 @@
+       "integrity": "sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "engines": {
+         "node": ">=12"
+       },
+@@ -3674,7 +3101,6 @@
+         }
+       ],
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "nanoid": "^3.3.11",
+         "picocolors": "^1.1.1",
+@@ -3870,7 +3296,6 @@
+       "resolved": "https://registry.npmjs.org/react/-/react-19.2.4.tgz",
+       "integrity": "sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==",
+       "license": "MIT",
+-      "peer": true,
+       "engines": {
+         "node": ">=0.10.0"
+       }
+@@ -3880,7 +3305,6 @@
+       "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-19.2.4.tgz",
+       "integrity": "sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==",
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "scheduler": "^0.27.0"
+       },
+@@ -4313,41 +3737,6 @@
+       "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==",
+       "license": "0BSD"
+     },
+-    "node_modules/tsparticles": {
+-      "version": "3.9.1",
+-      "resolved": "https://registry.npmjs.org/tsparticles/-/tsparticles-3.9.1.tgz",
+-      "integrity": "sha512-Y780IGSL4qjkZj7+fI92PV/cziHqLR/s6nnYri4K6vH3NQRmDK5D6pfskDO8T4Y96ChCWHY3uxPtOb/hKQ83Qg==",
+-      "funding": [
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/matteobruni"
+-        },
+-        {
+-          "type": "github",
+-          "url": "https://github.com/sponsors/tsparticles"
+-        },
+-        {
+-          "type": "buymeacoffee",
+-          "url": "https://www.buymeacoffee.com/matteobruni"
+-        }
+-      ],
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tsparticles/engine": "3.9.1",
+-        "@tsparticles/interaction-external-trail": "3.9.1",
+-        "@tsparticles/plugin-absorbers": "3.9.1",
+-        "@tsparticles/plugin-emitters": "3.9.1",
+-        "@tsparticles/plugin-emitters-shape-circle": "3.9.1",
+-        "@tsparticles/plugin-emitters-shape-square": "3.9.1",
+-        "@tsparticles/shape-text": "3.9.1",
+-        "@tsparticles/slim": "3.9.1",
+-        "@tsparticles/updater-destroy": "3.9.1",
+-        "@tsparticles/updater-roll": "3.9.1",
+-        "@tsparticles/updater-tilt": "3.9.1",
+-        "@tsparticles/updater-twinkle": "3.9.1",
+-        "@tsparticles/updater-wobble": "3.9.1"
+-      }
+-    },
+     "node_modules/type-check": {
+       "version": "0.4.0",
+       "resolved": "https://registry.npmjs.org/type-check/-/type-check-0.4.0.tgz",
+@@ -4415,7 +3804,6 @@
+       "integrity": "sha512-w+N7Hifpc3gRjZ63vYBXA56dvvRlNWRczTdmCBBa+CotUzAPf5b7YMdMR/8CQoeYE5LX3W4wj6RYTgonm1b9DA==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "dependencies": {
+         "esbuild": "^0.27.0",
+         "fdir": "^6.5.0",
+@@ -4553,7 +3941,6 @@
+       "integrity": "sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==",
+       "dev": true,
+       "license": "MIT",
+-      "peer": true,
+       "funding": {
+         "url": "https://github.com/sponsors/colinhacks"
+       }
+diff --git a/package.json b/package.json
+index 8d4d26a..b542c6b 100644
+--- a/package.json
++++ b/package.json
+@@ -10,13 +10,14 @@
+     "preview": "vite preview"
+   },
+   "dependencies": {
+-    "@tsparticles/react": "^3.0.0",
++    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
++    "@fontsource-variable/geist": "^5.3.0",
++    "@fontsource-variable/geist-mono": "^5.3.0",
+     "framer-motion": "^12.34.2",
+     "react": "^19.2.0",
+     "react-dom": "^19.2.0",
+     "react-icons": "^5.5.0",
+-    "react-router-dom": "^7.13.0",
+-    "tsparticles": "^3.9.1"
++    "react-router-dom": "^7.13.0"
+   },
+   "devDependencies": {
+     "@eslint/js": "^9.39.1",
+diff --git a/public/favicon.svg b/public/favicon.svg
+new file mode 100644
+index 0000000..8ce30e1
+--- /dev/null
++++ b/public/favicon.svg
+@@ -0,0 +1 @@
++<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0D0A1F"/><text x="32" y="42" font-family="system-ui,sans-serif" font-size="28" font-weight="700" text-anchor="middle" fill="#FF4D9D">CB</text></svg>
+diff --git a/src/App.css b/src/App.css
+deleted file mode 100644
+index cae1dd5..0000000
+--- a/src/App.css
++++ /dev/null
+@@ -1,11 +0,0 @@
+-.animated-bg {
+-  background: radial-gradient(circle at 20% 20%, #000000, #0e0122, #240059);
+-  animation: gradientMove 10s ease infinite;
+-  background-size: 200% 200%;
+-}
+-
+-@keyframes gradientMove {
+-  0% { background-position: 0% 50%; }
+-  50% { background-position: 100% 50%; }
+-  100% { background-position: 0% 50%; }
+-}
+\ No newline at end of file
+diff --git a/src/App.jsx b/src/App.jsx
+index b24e28c..d1803eb 100644
+--- a/src/App.jsx
++++ b/src/App.jsx
+@@ -1,31 +1,20 @@
+-import React, { useContext } from 'react';
+ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+-
+-import { ThemeContext } from './contexts/ThemeContext';
+-import { Main, BlogPage } from './pages'
+-import { BackToTop } from './components'
+-import ScrollToTop from './utils/ScrollToTop'
+-import ParticlesBackground from "./components/ParticlesBackground";
+-
+-import './App.css'
++import { Main } from "./pages";
++import { BackToTop } from "./components";
++import ScrollToTop from "./utils/ScrollToTop";
+ 
+ function App() {
+-
+   return (
+-    <div className="relative min-h-screen overflow-hidden animated-bg min-h-screen">
+-      <ParticlesBackground />
+-
++    <div className="site-bg relative min-h-screen overflow-x-clip">
+       <div className="relative z-10">
+-          <BrowserRouter>
+-          <ScrollToTop/>
++        <BrowserRouter>
++          <ScrollToTop />
+           <Routes>
+             <Route path="/" element={<Main />} />
+-            <Route path="/blog" element={<BlogPage />} />
+             <Route path="*" element={<Navigate to="/" />} />
+           </Routes>
+         </BrowserRouter>
+-      
+-      <BackToTop />
++        <BackToTop />
+       </div>
+     </div>
+   );
+diff --git a/src/components/About/About.jsx b/src/components/About/About.jsx
+index cc00d5f..9b9569b 100644
+--- a/src/components/About/About.jsx
++++ b/src/components/About/About.jsx
+@@ -1,35 +1,43 @@
+ import React from "react";
+ import { aboutData } from "../../data/aboutData";
++import { educationData } from "../../data/educationData";
++import { contactsData } from "../../data/contactsData";
+ import cecibh from "./cecibh.png";
+ 
+ function About() {
++  const edu = educationData[0];
++  const facts = [
++    { label: "Ubicación", value: contactsData.address },
++    { label: "Formación", value: `${edu.institution}, ${edu.startYear}–${edu.endYear}` },
++    { label: "Enfoque", value: "Frontend con React y TypeScript" },
++  ];
++
+   return (
+-    <section id="about" className=" text-white py-20 px-6">
+-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+-        
+-        <div>
+-          <h2 className="text-4xl font-bold mb-6 text-pink-500">
+-            {aboutData.title}
+-          </h2>
+-          <p className="text-gray-300 text-lg leading-relaxed">
+-            {aboutData.description1}
+-          </p>
+-          <p className="text-gray-300 text-lg leading-relaxed mt-4">
+-            {aboutData.description2}
+-          </p>
++    <section id="about" className="mx-auto max-w-6xl px-6 py-24">
++      <div className="grid items-start gap-12 md:grid-cols-12 md:gap-16">
++        <div className="md:col-span-4">
++          <div className="overflow-hidden rounded-2xl border border-line/20 bg-surface/50">
++            <img src={cecibh} alt="Retrato de Cecilia Barranco" className="aspect-[4/5] w-full object-cover object-top" />
++          </div>
+         </div>
+ 
+-        <div className="flex justify-center ">
+-          <img
+-            src={cecibh}
+-            alt="About"
+-            className="rounded-full w-80 w-60 shadow-lg"
+-          />
+-        </div>
++        <div className="md:col-span-8">
++          <h2 className="text-4xl font-semibold md:text-5xl">{aboutData.title}</h2>
++          <p className="mt-8 max-w-2xl text-lg leading-relaxed">{aboutData.description1}</p>
++          <p className="mt-5 max-w-2xl leading-relaxed text-muted">{aboutData.description2}</p>
+ 
++          <dl className="mt-10 divide-y divide-line/15 border-y border-line/15">
++            {facts.map((f) => (
++              <div key={f.label} className="grid gap-1 py-4 sm:grid-cols-[9rem_1fr]">
++                <dt className="text-sm text-muted">{f.label}</dt>
++                <dd>{f.value}</dd>
++              </div>
++            ))}
++          </dl>
++        </div>
+       </div>
+     </section>
+   );
+ }
+ 
+-export default About;
+\ No newline at end of file
++export default About;
+diff --git a/src/components/Achievement/Achievement.jsx b/src/components/Achievement/Achievement.jsx
+index 66d4bd1..069786d 100644
+--- a/src/components/Achievement/Achievement.jsx
++++ b/src/components/Achievement/Achievement.jsx
+@@ -6,23 +6,17 @@ function Achievement() {
+   if (!achievementData.achievements.length) return null;
+ 
+   return (
+-    <section id="achievement" className="text-white py-20 px-6">
+-      <div className="max-w-6xl mx-auto">
+-        <h1 className="text-4xl font-bold mb-4 text-pink-500">
+-          Certificaciones
+-        </h1>
+-        <p className="text-gray-400 mb-12">
+-          {achievementData.bio}
+-        </p>
++    <section id="achievement" className="mx-auto max-w-6xl px-6 py-24">
++      <h2 className="text-4xl font-semibold md:text-5xl">Certificaciones y publicaciones</h2>
++      <p className="mt-4 max-w-xl text-muted">{achievementData.bio}</p>
+ 
+-        <div className="grid md:grid-cols-3 gap-8">
+-          {achievementData.achievements.map((achieve) => (
+-            <AchievementCard key={achieve.id} {...achieve} />
+-          ))}
+-        </div>
++      <div className="mt-14 border-t border-line/15">
++        {achievementData.achievements.map((a) => (
++          <AchievementCard key={a.id} {...a} />
++        ))}
+       </div>
+     </section>
+   );
+ }
+ 
+-export default Achievement;
+\ No newline at end of file
++export default Achievement;
+diff --git a/src/components/Achievement/AchievementCard.jsx b/src/components/Achievement/AchievementCard.jsx
+index b823adc..48eb86a 100644
+--- a/src/components/Achievement/AchievementCard.jsx
++++ b/src/components/Achievement/AchievementCard.jsx
+@@ -1,59 +1,26 @@
+ import React from "react";
+-import { AiOutlineFolder } from "react-icons/ai";
++import { FiExternalLink } from "react-icons/fi";
+ 
+-function AchievementCard({ title, details, date, field, image, links }) {
++function AchievementCard({ title, details, date, field, links }) {
+   return (
+-    <div className="bg-white/5 backdrop-blur-xl border border-white/10 
+-                    rounded-3xl p-8 shadow-2xl 
+-                    hover:border-pink-500/40 hover:shadow-pink-500/10 
+-                    transition-all duration-300">
+-
+-      <div className="mb-6">
+-        <h2 className="text-xl font-semibold text-pink-500 mb-3">
+-          {title}
+-        </h2>
+-
+-        <p className="text-gray-400 text-sm leading-relaxed">
+-          {details}
+-        </p>
+-
+-        {/* 🔥 LINKS */}
++    <article className="grid gap-3 border-b border-line/15 py-7 md:grid-cols-[9rem_1fr_12rem] md:gap-10">
++      <p className="font-mono text-sm text-signal">{date}</p>
++      <div>
++        <h3 className="text-lg font-semibold leading-snug">{title}</h3>
++        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{details}</p>
+         {links && (
+-          <div className="mt-4 space-y-1">
+-            {links.map((link, index) => (
+-              <a
+-                key={index}
+-                href={link.url}
+-                target="_blank"
+-                rel="noreferrer"
+-                className="block text-sm text-pink-400 hover:text-pink-300 hover:underline transition"
+-              >
+-                📄 {link.label} →
++          <div className="mt-3 flex flex-col gap-1.5">
++            {links.map((l) => (
++              <a key={l.url} href={l.url} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 text-sm text-accent hover:underline">
++                {l.label} <FiExternalLink />
+               </a>
+             ))}
+           </div>
+         )}
+       </div>
+-
+-      <div className="flex justify-between items-center text-sm text-gray-500">
+-        <span>{date}</span>
+-        <div className="flex items-center gap-2">
+-          <AiOutlineFolder />
+-          <span>{field}</span>
+-        </div>
+-      </div>
+-
+-      {image && (
+-        <div className="mt-6 overflow-hidden rounded-2xl">
+-          <img
+-            src={image}
+-            alt={title}
+-            className="rounded-2xl hover:scale-105 transition duration-500"
+-          />
+-        </div>
+-      )}
+-    </div>
++      <p className="text-sm text-muted md:text-right">{field}</p>
++    </article>
+   );
+ }
+ 
+-export default AchievementCard;
+\ No newline at end of file
++export default AchievementCard;
+diff --git a/src/components/BackToTop/BackToTop.jsx b/src/components/BackToTop/BackToTop.jsx
+index e5a6222..2454fe4 100644
+--- a/src/components/BackToTop/BackToTop.jsx
++++ b/src/components/BackToTop/BackToTop.jsx
+@@ -1,35 +1,26 @@
+ import React, { useEffect, useState } from "react";
+-import { IoIosArrowDropupCircle } from "react-icons/io";
++import { FiArrowUp } from "react-icons/fi";
+ 
+ function BackToTop() {
+   const [visible, setVisible] = useState(false);
+ 
+   useEffect(() => {
+-    const toggleVisible = () => {
+-      setVisible(window.scrollY > 300);
+-    };
+-
+-    window.addEventListener("scroll", toggleVisible);
+-    return () => window.removeEventListener("scroll", toggleVisible);
++    const onScroll = () => setVisible(window.scrollY > 600);
++    window.addEventListener("scroll", onScroll, { passive: true });
++    return () => window.removeEventListener("scroll", onScroll);
+   }, []);
+ 
+-  const scrollToTop = () => {
+-    window.scrollTo({
+-      top: 0,
+-      behavior: "smooth",
+-    });
+-  };
+-
+   if (!visible) return null;
+ 
+   return (
+     <button
+-      onClick={scrollToTop}
+-      className="fixed bottom-8 right-8 text-pink-500 text-5xl hover:scale-110 transition"
++      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
++      aria-label="Volver arriba"
++      className="fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-line/25 bg-bg/80 text-ink backdrop-blur transition-colors hover:border-accent hover:text-accent"
+     >
+-      <IoIosArrowDropupCircle />
++      <FiArrowUp />
+     </button>
+   );
+ }
+ 
+-export default BackToTop;
+\ No newline at end of file
++export default BackToTop;
+diff --git a/src/components/Contacts/Contacts.jsx b/src/components/Contacts/Contacts.jsx
+index 3c1eea4..998ee90 100644
+--- a/src/components/Contacts/Contacts.jsx
++++ b/src/components/Contacts/Contacts.jsx
+@@ -1,137 +1,61 @@
+-import React from "react";
+-import {
+-  FaGithub,
+-  FaLinkedinIn,
+-  FaTwitter,
+-  FaInstagram,
+-  FaWhatsapp,
+-} from "react-icons/fa";
+-import { FiPhone, FiAtSign } from "react-icons/fi";
+-import { HiOutlineLocationMarker } from "react-icons/hi";
+-
++import React, { useState } from "react";
++import { FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
++import { FiCopy, FiCheck } from "react-icons/fi";
+ import { socialsData } from "../../data/socialsData";
+ import { contactsData } from "../../data/contactsData";
+ 
+ function Contacts() {
+-  // 🔥 CAMBIA ESTE NÚMERO POR EL TUYO (formato internacional sin +)
+-  const phoneNumber = "522223538675";
+-
+-const whatsappMessage =
+-  "Hola Cecilia, vi tu portafolio y me gustaría hablar contigo sobre una oportunidad/proyecto.";
+-
+-  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+-    whatsappMessage
+-  )}`;
++  const [copied, setCopied] = useState(false);
++
++  const digits = contactsData.phone.replace(/\D/g, "");
++  const message = "Hola Cecilia, vi tu portafolio y me gustaría hablar contigo sobre una oportunidad/proyecto.";
++  const whatsappURL = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
++
++  const copyEmail = async () => {
++    try {
++      await navigator.clipboard.writeText(contactsData.email);
++      setCopied(true);
++      setTimeout(() => setCopied(false), 2000);
++    } catch {
++      window.location.href = `mailto:${contactsData.email}`;
++    }
++  };
+ 
+   return (
+-    <section
+-      id="contacts"
+-      className="text-white py-20 px-6 bg-transparent"
+-    >
+-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+-
+-        {/* LEFT SIDE */}
+-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 shadow-2xl">
+-          <h2 className="text-4xl font-bold mb-8 text-pink-500">
+-            Trabajemos Juntos!
+-          </h2>
+-
+-          <p className="text-gray-400 mb-8 leading-relaxed">
+-            Ayudo a construir aplicaciones web modernas, escalables y enfocadas en resultados.
+-            Estoy disponible para proyectos freelance, colaboraciones o posiciones full-time.
+-            Si buscas mejorar tu producto digital o iniciar uno desde cero, hablemos.
+-          </p>
+-
+-          <a
+-            href={whatsappURL}
+-            target="_blank"
+-            rel="noreferrer"
+-            className="group bg-[#0f0f0f] border border-green-500/40 text-green-400 
+-                       hover:bg-green-500 hover:text-black 
+-                       px-6 py-4 rounded-2xl flex items-center gap-3 
+-                       transition-all duration-300 shadow-xl 
+-                       hover:shadow-green-500/30 hover:scale-105 w-fit"
++    <section id="contacts" className="mx-auto max-w-6xl px-6 py-24">
++      <div className="rounded-3xl border border-line/20 bg-surface/50 p-8 md:p-16">
++        <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] md:text-6xl">
++          Hablemos de tu próximo producto.
++        </h2>
++        <p className="mt-6 max-w-xl text-muted">
++          Disponible para proyectos freelance, colaboraciones o posiciones full-time. Si quieres mejorar un producto digital o iniciar uno desde cero, escríbeme.
++        </p>
++
++        <div className="mt-10 flex flex-wrap items-center gap-3">
++          <a href={`mailto:${contactsData.email}`} className="rounded-full bg-accent px-6 py-3 font-medium text-bg transition-opacity hover:opacity-90">
++            {contactsData.email}
++          </a>
++          <button
++            onClick={copyEmail}
++            className="inline-flex items-center gap-2 rounded-full border border-line/25 px-5 py-3 transition-colors hover:border-accent hover:text-accent"
++            aria-live="polite"
+           >
+-            Envíame un mensaje por WhatsApp
+-            <FaWhatsapp className="text-xl group-hover:rotate-12 transition-transform duration-300" />
++            {copied ? <FiCheck /> : <FiCopy />}
++            {copied ? "Correo copiado" : "Copiar correo"}
++          </button>
++          <a href={whatsappURL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line/25 px-5 py-3 transition-colors hover:border-accent hover:text-accent">
++            <FaWhatsapp /> WhatsApp
+           </a>
+         </div>
+ 
+-        {/* RIGHT SIDE */}
+-        <div className="space-y-6 backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 shadow-2xl">
+-
+-          <div className="flex items-center gap-4">
+-            <FiAtSign className="text-2xl text-pink-500" />
+-            <a
+-              href={`mailto:${contactsData.email}`}
+-              className="text-gray-300 hover:text-pink-500 transition"
+-            >
+-              {contactsData.email}
+-            </a>
+-          </div>
+-
+-          <div className="flex items-center gap-4">
+-            <FiPhone className="text-2xl text-pink-500" />
+-            <a
+-              href={`tel:${contactsData.phone}`}
+-              className="text-gray-300 hover:text-pink-500 transition"
+-            >
+-              {contactsData.phone}
+-            </a>
+-          </div>
+-
+-          <div className="flex items-center gap-4">
+-            <HiOutlineLocationMarker className="text-2xl text-pink-500" />
+-            <p className="text-gray-300">{contactsData.address}</p>
+-          </div>
+-
+-          <div className="flex gap-6 mt-8 text-2xl text-gray-400">
+-            {socialsData.github && (
+-              <a
+-                href={socialsData.github}
+-                target="_blank"
+-                rel="noreferrer"
+-                className="hover:text-pink-500 transition hover:scale-110"
+-              >
+-                <FaGithub />
+-              </a>
+-            )}
+-            {socialsData.linkedIn && (
+-              <a
+-                href={socialsData.linkedIn}
+-                target="_blank"
+-                rel="noreferrer"
+-                className="hover:text-pink-500 transition hover:scale-110"
+-              >
+-                <FaLinkedinIn />
+-              </a>
+-            )}
+-            {socialsData.twitter && (
+-              <a
+-                href={socialsData.twitter}
+-                target="_blank"
+-                rel="noreferrer"
+-                className="hover:text-pink-500 transition hover:scale-110"
+-              >
+-                <FaTwitter />
+-              </a>
+-            )}
+-            {socialsData.instagram && (
+-              <a
+-                href={socialsData.instagram}
+-                target="_blank"
+-                rel="noreferrer"
+-                className="hover:text-pink-500 transition hover:scale-110"
+-              >
+-                <FaInstagram />
+-              </a>
+-            )}
+-          </div>
++        <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-line/15 pt-8 text-sm text-muted">
++          <span>{contactsData.address}</span>
++          <a href={socialsData.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink"><FaGithub /> GitHub</a>
++          <a href={socialsData.linkedIn} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink"><FaLinkedinIn /> LinkedIn</a>
+         </div>
+-
+       </div>
+     </section>
+   );
+ }
+ 
+-export default Contacts;
+\ No newline at end of file
++export default Contacts;
+diff --git a/src/components/Experience/Experience.jsx b/src/components/Experience/Experience.jsx
+index ab5b0bb..0c6b9f6 100644
+--- a/src/components/Experience/Experience.jsx
++++ b/src/components/Experience/Experience.jsx
+@@ -1,30 +1,62 @@
+-import React from "react";
++import React, { useEffect, useState } from "react";
+ import ExperienceCard from "./ExperienceCard";
+ import { experienceData } from "../../data/experienceData";
++import { parseMonth } from "../../utils/period";
+ 
+ function Experience() {
+-  return (
+-    <section id="experience" className="py-24 px-6">
+-      <div className="max-w-5xl mx-auto">
+-
+-        <h2 className="text-4xl font-bold text-pink-500 mb-20 text-center">
+-          Professional Experience
+-        </h2>
+-
+-        <div className="relative space-y-5">
+-
+-          {/* Vertical Line */}
+-          <div className="absolute left-4 top-0 h-full w-px bg-white/10" />
++  const [active, setActive] = useState(0);
++
++  useEffect(() => {
++    const observer = new IntersectionObserver(
++      (entries) =>
++        entries.forEach((e) => e.isIntersecting && setActive(Number(e.target.dataset.index))),
++      { rootMargin: "-35% 0px -55% 0px" }
++    );
++    document.querySelectorAll("[data-role]").forEach((el) => observer.observe(el));
++    return () => observer.disconnect();
++  }, []);
++
++  // Suma de meses trabajados por rol (no cuenta los huecos entre empleos)
++  const totalMonths = experienceData.reduce(
++    (sum, e) => sum + (parseMonth(e.endYear) - parseMonth(e.startYear) + 1),
++    0
++  );
++  const years = Math.floor(totalMonths / 12);
+ 
+-          {experienceData.map((exp, index) => (
+-            <ExperienceCard key={index} {...exp} />
++  return (
++    <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
++      <div className="grid gap-12 md:grid-cols-[18rem_1fr] md:gap-16">
++        <aside className="md:sticky md:top-28 md:self-start">
++          <h2 className="text-4xl font-semibold md:text-5xl">Experiencia</h2>
++          <p className="mt-4 text-muted">
++            {years}+ años en producto: de formularios de seguros a plataformas cívicas e integraciones B2B con SAP Ariba.
++          </p>
++
++          <ol className="mt-10 hidden space-y-1 border-l border-line/15 md:block">
++            {experienceData.map((e, i) => (
++              <li key={i}>
++                <a
++                  href={`#role-${i}`}
++                  className={`-ml-px block border-l py-1.5 pl-4 text-sm transition-colors ${
++                    active === i ? "border-accent text-ink" : "border-transparent text-muted hover:text-ink"
++                  }`}
++                >
++                  {e.company}
++                  <span className="block font-mono text-xs text-muted">{e.startYear}</span>
++                </a>
++              </li>
++            ))}
++          </ol>
++        </aside>
++
++        <div className="space-y-6">
++          {experienceData.map((exp, i) => (
++            <ExperienceCard key={i} index={i} {...exp} />
+           ))}
+-
+         </div>
+-
+       </div>
+     </section>
+   );
+ }
+ 
+-export default Experience;
+\ No newline at end of file
++export default Experience;
+diff --git a/src/components/Experience/ExperienceCard.jsx b/src/components/Experience/ExperienceCard.jsx
+index 15a8f78..bc362e3 100644
+--- a/src/components/Experience/ExperienceCard.jsx
++++ b/src/components/Experience/ExperienceCard.jsx
+@@ -1,49 +1,56 @@
+ import React from "react";
++import { durationLabel } from "../../utils/period";
+ 
+-function ExperienceCard({
+-  company,
+-  jobtitle,
+-  startYear,
+-  endYear,
+-  description,
+-}) {
++function ExperienceCard({ index, company, jobtitle, startYear, endYear, description, stack = [], highlights = [] }) {
+   return (
+-    <div className="relative pl-12 group">
+-
+-      {/* Dot */}
+-      <div className="absolute left-[6px] top-8 w-4 h-4 rounded-full 
+-                      bg-pink-500 shadow-lg shadow-pink-500/40
+-                      group-hover:scale-125 transition-transform duration-300" />
+-
+-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 
+-                      rounded-3xl p-8 shadow-2xl 
+-                      hover:border-pink-500/40 
+-                      hover:shadow-pink-500/10 
+-                      transition-all duration-300">
+-
+-        <p className="text-pink-500 text-sm mb-2">
++    <article
++      id={`role-${index}`}
++      data-role
++      data-index={index}
++      className="rounded-2xl border border-line/15 bg-surface/50 p-7 transition-colors hover:border-line/30 md:p-9"
++    >
++      <header className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
++        <div>
++          <h3 className="text-2xl font-semibold leading-snug">{jobtitle}</h3>
++          <p className="mt-1 text-accent">{company}</p>
++        </div>
++        <p className="font-mono text-sm text-muted">
+           {startYear} – {endYear}
++          <span className="ml-3 text-signal">{durationLabel(startYear, endYear)}</span>
+         </p>
+-
+-        <h3 className="text-xl font-semibold text-white">
+-          {jobtitle}
+-        </h3>
+-
+-        <p className="text-gray-400 mb-4">
+-          {company}
+-        </p>
+-
+-        <ul className="space-y-2 text-sm text-gray-400 list-disc list-inside">
+-          {description.map((item, index) => (
+-            <li key={index} className="leading-relaxed">
+-              {item}
++      </header>
++
++      {highlights.length > 0 && (
++        <dl className="mt-7 grid gap-3 sm:grid-cols-2">
++          {highlights.map((h) => (
++            <div key={h.label} className="rounded-xl border border-accent/25 bg-accent/5 px-5 py-4">
++              <dt className="font-display text-4xl font-semibold text-accent">{h.value}</dt>
++              <dd className="mt-1 text-sm text-muted">{h.label}</dd>
++            </div>
++          ))}
++        </dl>
++      )}
++
++      <ul className="mt-7 space-y-3 text-[0.95rem] leading-relaxed text-muted">
++        {description.map((item, i) => (
++          <li key={i} className="flex gap-3">
++            <span className="mt-[0.7em] h-px w-3 shrink-0 bg-signal" />
++            <span>{item}</span>
++          </li>
++        ))}
++      </ul>
++
++      {stack.length > 0 && (
++        <ul className="mt-7 flex flex-wrap gap-2">
++          {stack.map((s) => (
++            <li key={s} className="rounded-md border border-line/15 px-2.5 py-1 font-mono text-xs text-signal">
++              {s}
+             </li>
+           ))}
+         </ul>
+-
+-      </div>
+-    </div>
++      )}
++    </article>
+   );
+ }
+ 
+-export default ExperienceCard;
+\ No newline at end of file
++export default ExperienceCard;
+diff --git a/src/components/Footer/Footer.jsx b/src/components/Footer/Footer.jsx
+index b088467..5213c45 100644
+--- a/src/components/Footer/Footer.jsx
++++ b/src/components/Footer/Footer.jsx
+@@ -2,32 +2,14 @@ import React from "react";
+ import { headerData } from "../../data/headerData";
+ 
+ function Footer() {
+-  const currentYear = new Date().getFullYear();
+-
+-  const shortName =
+-    headerData.name.length > 12
+-      ? headerData.name.split(" ")[0]
+-      : headerData.name;
+-
+   return (
+-    <footer className="bg-black border-t border-gray-800 text-gray-400 py-8 px-6">
+-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+-
+-        {/* Left */}
+-        <p>
+-          © {currentYear} {shortName}. All rights reserved.
+-        </p>
+-
+-        {/* Right */}
+-        <p className="flex items-center gap-2">
+-          
+-          <span className="text-pink-500 text-base">❤</span>
+-           {shortName}
+-        </p>
+-
++    <footer className="mx-auto max-w-6xl border-t border-line/15 px-6 py-8 text-sm text-muted">
++      <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
++        <p>© {new Date().getFullYear()} {headerData.name}</p>
++        <p>Hecho con React, Tailwind y Vite</p>
+       </div>
+     </footer>
+   );
+ }
+ 
+-export default Footer;
+\ No newline at end of file
++export default Footer;
+diff --git a/src/components/Landing/Landing.jsx b/src/components/Landing/Landing.jsx
+index 75c71b4..b7f552f 100644
+--- a/src/components/Landing/Landing.jsx
++++ b/src/components/Landing/Landing.jsx
+@@ -1,147 +1,100 @@
+-import React, { useState } from "react";
+-import { motion } from "framer-motion";
++import React from "react";
++import { motion, useReducedMotion } from "framer-motion";
+ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
++import { experienceData } from "../../data/experienceData";
++import { socialsData } from "../../data/socialsData";
++import { parseMonth } from "../../utils/period";
+ 
+-const techStack = [
+-  "React",
+-  "Next.js",
+-  "TypeScript",
+-  "JavaScript",
+-  "Angular",
+-  ".NET Core",
+-  "Node.js",
+-  "PostgreSQL",
+-  "WordPress",
+-  "Tailwind CSS",
+-];
+-
+-function Landing() {
+-  const [isPaused, setIsPaused] = useState(false);
++// Pista de carrera profesional: cada rol es una barra posicionada por sus fechas reales.
++function CareerTrack() {
++  const reduce = useReducedMotion();
++  const roles = [...experienceData].reverse();
++  const starts = roles.map((r) => parseMonth(r.startYear));
++  const ends = roles.map((r) => parseMonth(r.endYear) + 1);
++  const firstYear = Math.floor(Math.min(...starts) / 12);
++  const min = firstYear * 12;
++  const max = Math.max(...ends) + 2;
++  const pct = (m) => ((m - min) / (max - min)) * 100;
++  const years = [];
++  for (let y = firstYear; y * 12 < max; y++) years.push(y);
+ 
+   return (
+-    <section
+-      id="home"
+-      className="min-h-screen flex items-center justify-center text-white px-6 overflow-hidden"
+-    >
+-      <div className="max-w-5xl text-center">
+-
+-        {/* Emoji */}
+-        <motion.p
+-          initial={{ opacity: 0, y: -20 }}
+-          animate={{ opacity: 1, y: 0 }}
+-          transition={{ duration: 0.6 }}
+-          className="text-4xl uppercase tracking-widest mb-2"
+-        >
+-          👩‍💻
+-        </motion.p>
+-
+-        {/* Subtitle */}
+-        <motion.p
+-          initial={{ opacity: 0 }}
+-          animate={{ opacity: 1 }}
+-          transition={{ delay: 0.3 }}
+-          className="text-pink-500 uppercase tracking-widest mb-4"
+-        >
+-          Frontend Engineer | Fullstack Developer
+-        </motion.p>
+-
+-        {/* Title */}
+-        <motion.h1
+-          initial={{ opacity: 0, y: 30 }}
+-          animate={{ opacity: 1, y: 0 }}
+-          transition={{ delay: 0.5 }}
+-          className="md:text-5xl text-4xl font-bold leading-tight"
+-        >
+-          Hola, soy <span className="text-pink-500">Cecilia Barranco</span>
+-        </motion.h1>
++    <div className="mt-20 border-t border-line/15 pt-8" role="img" aria-label="Línea de tiempo de mi trayectoria profesional">
++      <div className="grid gap-x-6 md:grid-cols-[13rem_1fr]">
++        <div className="hidden md:block" />
++        <div className="relative mb-3 h-5 font-mono text-xs text-muted">
++          {years.map((y) => (
++            <span key={y} className="absolute -translate-x-1/2 first:translate-x-0" style={{ left: `${pct(y * 12)}%` }}>
++              {y}
++            </span>
++          ))}
++        </div>
++      </div>
+ 
+-        {/* Description */}
+-        <motion.p
+-          initial={{ opacity: 0 }}
+-          animate={{ opacity: 1 }}
+-          transition={{ delay: 0.8 }}
+-          className="text-gray-400 mt-6 text-lg text-center max-w-2xl px-40 md:px-0 mx-auto"
+-        >
++      <div className="space-y-4">
++        {roles.map((r, i) => (
++          <div key={i} className="grid items-center gap-x-6 gap-y-1.5 md:grid-cols-[13rem_1fr]">
++            <div className="text-sm">
++              <span className="text-ink">{r.company}</span>
++              <span className="block text-xs text-muted">{r.jobtitle.split("–")[0].trim()}</span>
++            </div>
++            <div className="relative h-7">
++              {years.map((y) => (
++                <span key={y} className="absolute inset-y-0 w-px bg-line/10" style={{ left: `${pct(y * 12)}%` }} />
++              ))}
++              <motion.span
++                className="absolute inset-y-1 origin-left rounded-sm bg-gradient-to-r from-signal to-accent"
++                style={{ left: `${pct(starts[i])}%`, width: `${pct(ends[i]) - pct(starts[i])}%` }}
++                initial={reduce ? false : { scaleX: 0 }}
++                animate={{ scaleX: 1 }}
++                transition={{ duration: 0.7, delay: 0.5 + i * 0.25, ease: [0.22, 1, 0.36, 1] }}
++              />
++            </div>
++          </div>
++        ))}
++      </div>
++    </div>
++  );
++}
+ 
+-        Ingeniera Frontend con más de 4 años de experiencia desarrollando aplicaciones web escalables utilizando React, TypeScript y tecnologías modernas de JavaScript.
+-        <br />Me especializo en arquitectura frontend, creación de componentes reutilizables, optimización de rendimiento e integración eficiente con APIs backend.
+-        <br />He trabajado en plataformas en producción, sistemas de e-commerce e integraciones empresariales, colaborando con equipos de backend, QA y diseño para entregar productos confiables y centrados en el usuario.
+-        </motion.p>
++function Landing() {
++  return (
++    <section id="home" className="mx-auto max-w-6xl px-6 pb-24 pt-36 md:pt-44">
++      <p className="inline-flex items-center gap-2 rounded-full border border-line/15 px-3 py-1 text-sm text-muted">
++        <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_10px_rgb(var(--accent))]" />
++        Disponible para nuevos proyectos
++      </p>
+ 
++      <h1 className="mt-8 max-w-4xl text-[clamp(2.6rem,7vw,5.5rem)] font-semibold leading-[1.02]">
++        Construyo interfaces que escalan y llegan a producción.
++      </h1>
+ 
+-        {/* 🔥 Carrusel automático */}
+-        <div
+-          className="mt-14 overflow-hidden"
+-          onMouseEnter={() => setIsPaused(true)}
+-          onMouseLeave={() => setIsPaused(false)}
+-        >
+-          <motion.div
+-            animate={{
+-              x: isPaused ? 0 : ["0%", "-50%"],
+-            }}
+-            transition={{
+-              repeat: Infinity,
+-              duration: 10,
+-              ease: "linear",
+-            }}
+-            className="flex gap-16 whitespace-nowrap text-gray-500 text-xl"
+-          >
+-            {[...techStack, ...techStack].map((tech, index) => (
+-              <span key={index} className="hover:text-pink-500 transition">
+-                {tech}
+-              </span>
+-            ))}
+-          </motion.div>
+-        </div>
++      <div className="mt-8 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
++        <p className="max-w-xl text-lg leading-relaxed text-muted">
++          Soy <span className="text-ink">Cecilia Barranco</span>, ingeniera Frontend y Fullstack con más de 4 años de
++          experiencia en React, TypeScript y .NET Core. Plataformas cívicas, e-commerce e integraciones empresariales B2B.
++        </p>
+ 
+-                {/* Buttons */}
+-        <motion.div
+-          initial={{ opacity: 0 }}
+-          animate={{ opacity: 1 }}
+-          transition={{ delay: 1 }}
+-          className="flex justify-center gap-6 mt-20"
+-        >
+-          <a
+-            href="#projects"
+-            className="bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-xl transition"
+-          >
+-            Ver Proyectos
++        <div className="flex flex-wrap items-center gap-3">
++          <a href="#projects" className="rounded-full bg-accent px-6 py-3 font-medium text-bg transition-opacity hover:opacity-90">
++            Ver proyectos
+           </a>
+-
+-          <a
+-            href="#contacts"
+-            className="border border-pink-600 px-6 py-3 rounded-xl hover:bg-pink-600 transition"
+-          >
++          <a href="#contacts" className="rounded-full border border-line/25 px-6 py-3 transition-colors hover:border-accent hover:text-accent">
+             Contáctame
+           </a>
+-        </motion.div>
+-
+-        {/* Social Icons */}
+-        <motion.div
+-          initial={{ opacity: 0 }}
+-          animate={{ opacity: 1 }}
+-          transition={{ delay: 1.2 }}
+-          className="flex justify-center gap-6 mt-12 text-2xl text-gray-400"
+-        >
+-          <a
+-            href="https://github.com/ceciliabh"
+-            target="_blank"
+-            rel="noreferrer"
+-          >
+-            <FaGithub className="hover:text-pink-500 transition" />
++          <span className="mx-1 hidden h-6 w-px bg-line/20 sm:block" />
++          <a href={socialsData.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="p-2 text-xl text-muted transition-colors hover:text-ink">
++            <FaGithub />
+           </a>
+-
+-          <a
+-            href="https://www.linkedin.com/in/cecilia-barranco/"
+-            target="_blank"
+-            rel="noreferrer"
+-          >
+-            <FaLinkedinIn className="hover:text-pink-500 transition" />
++          <a href={socialsData.linkedIn} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="p-2 text-xl text-muted transition-colors hover:text-ink">
++            <FaLinkedinIn />
+           </a>
+-        </motion.div>
++        </div>
+       </div>
++
++      <CareerTrack />
+     </section>
+   );
+ }
+ 
+-export default Landing;
+\ No newline at end of file
++export default Landing;
+diff --git a/src/components/Navbar/Navbar.jsx b/src/components/Navbar/Navbar.jsx
+index ef07837..3440923 100644
+--- a/src/components/Navbar/Navbar.jsx
++++ b/src/components/Navbar/Navbar.jsx
+@@ -1,66 +1,75 @@
+-import React, { useState } from "react";
++import React, { useEffect, useState } from "react";
+ import { HiMenu, HiX } from "react-icons/hi";
+ 
+ const links = [
+-  { name: "Inicio", href: "#home" },
+-  { name: "Sobre mí", href: "#about" },
+-  { name: "Experiencia", href: "#experience" },
+-  { name: "Proyectos", href: "#projects" },
+-  { name: "Contacto", href: "#contacts" },
++  { name: "Experiencia", id: "experience" },
++  { name: "Proyectos", id: "projects" },
++  { name: "Skills", id: "skills" },
++  { name: "Sobre mí", id: "about" },
+ ];
+ 
+ function Navbar() {
+   const [open, setOpen] = useState(false);
++  const [active, setActive] = useState("");
+ 
+-  return (
+-    <nav className="fixed top-0 w-full z-50 backdrop-blur-md bg-black/60 border-b border-gray-800">
+-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
++  useEffect(() => {
++    const ids = [...links.map((l) => l.id), "contacts"];
++    const observer = new IntersectionObserver(
++      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
++      { rootMargin: "-40% 0px -55% 0px" }
++    );
++    ids.forEach((id) => {
++      const el = document.getElementById(id);
++      if (el) observer.observe(el);
++    });
++    return () => observer.disconnect();
++  }, []);
++
++  const linkClass = (id) =>
++    `transition-colors ${active === id ? "text-ink" : "text-muted hover:text-ink"}`;
+ 
+-        {/* LOGO */}
+-        <a href="#home" className="text-xl font-bold text-pink-500">
+-          
++  return (
++    <header className="fixed inset-x-0 top-0 z-50 border-b border-line/10 bg-bg/70 backdrop-blur-xl">
++      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Principal">
++        <a href="#home" className="font-display text-lg font-semibold tracking-tight">
++          cecilia<span className="text-accent">.</span>dev
+         </a>
+ 
+-        {/* DESKTOP LINKS */}
+-        <div className="hidden md:flex gap-8 text-gray-300">
+-          {links.map((link) => (
+-            <a
+-              key={link.name}
+-              href={link.href}
+-              className="hover:text-pink-500 transition"
+-            >
+-              {link.name}
++        <div className="hidden items-center gap-8 text-sm md:flex">
++          {links.map((l) => (
++            <a key={l.id} href={`#${l.id}`} className={linkClass(l.id)}>
++              {l.name}
+             </a>
+           ))}
++          <a
++            href="#contacts"
++            className="rounded-full border border-accent/50 px-4 py-1.5 text-accent transition-colors hover:bg-accent hover:text-bg"
++          >
++            Contacto
++          </a>
+         </div>
+ 
+-        {/* MOBILE ICON */}
+-        <div className="md:hidden text-white">
+-          {open ? (
+-            <HiX size={28} onClick={() => setOpen(false)} />
+-          ) : (
+-            <HiMenu size={28} onClick={() => setOpen(true)} />
+-          )}
+-        </div>
+-      </div>
++        <button
++          className="text-ink md:hidden"
++          aria-label={open ? "Cerrar menú" : "Abrir menú"}
++          aria-expanded={open}
++          onClick={() => setOpen(!open)}
++        >
++          {open ? <HiX size={26} /> : <HiMenu size={26} />}
++        </button>
++      </nav>
+ 
+-      {/* MOBILE MENU */}
+       {open && (
+-        <div className="md:hidden bg-black border-t border-gray-800 flex flex-col items-center gap-6 py-6">
+-          {links.map((link) => (
+-            <a
+-              key={link.name}
+-              href={link.href}
+-              onClick={() => setOpen(false)}
+-              className="text-gray-300 hover:text-pink-500 transition"
+-            >
+-              {link.name}
++        <div className="flex flex-col gap-5 border-t border-line/10 bg-bg px-6 py-6 md:hidden">
++          {[...links, { name: "Contacto", id: "contacts" }].map((l) => (
++            <a key={l.id} href={`#${l.id}`} onClick={() => setOpen(false)} className="text-lg text-muted hover:text-ink">
++              {l.name}
+             </a>
+           ))}
+         </div>
+       )}
+-    </nav>
++    </header>
+   );
+ }
+ 
+-export default Navbar;
+\ No newline at end of file
++export default Navbar;
+diff --git a/src/components/ParticlesBackground.jsx b/src/components/ParticlesBackground.jsx
+deleted file mode 100644
+index ffc9836..0000000
+--- a/src/components/ParticlesBackground.jsx
++++ /dev/null
+@@ -1,28 +0,0 @@
+-import Particles from "@tsparticles/react";
+-import { loadFull } from "tsparticles";
+-
+-function ParticlesBackground() {
+-  const particlesInit = async (main) => {
+-    await loadFull(main);
+-  };
+-
+-  return (
+-    <Particles
+-      init={particlesInit}
+-      options={{
+-        fullScreen: { enable: false },
+-        background: { color: "transparent" },
+-        particles: {
+-        number: { value: 100 },
+-        color: { value: "#ff0000" },
+-        opacity: { value: 1 },
+-        size: { value: 5 },
+-        move: { enable: true, speed: 2 },
+-        }
+-      }}
+-      className="absolute inset-0 z-[1]"
+-    />
+-  );
+-}
+-
+-export default ParticlesBackground;
+\ No newline at end of file
+diff --git a/src/components/Projects/Projects.jsx b/src/components/Projects/Projects.jsx
+index 0115d60..b74bbf5 100644
+--- a/src/components/Projects/Projects.jsx
++++ b/src/components/Projects/Projects.jsx
+@@ -4,20 +4,17 @@ import ProjectCard from "./SingleProject/ProjectCard";
+ 
+ function Projects() {
+   return (
+-    <section id="projects" className=" text-white py-20 px-6">
+-      <div className="max-w-7xl mx-auto">
+-        <h2 className="text-4xl font-bold mb-12 text-pink-500">
+-          Proyectos
+-        </h2>
++    <section id="projects" className="mx-auto max-w-6xl px-6 py-24">
++      <h2 className="text-4xl font-semibold md:text-5xl">Proyectos</h2>
++      <p className="mt-4 max-w-xl text-muted">Productos en producción y trabajos de investigación donde me tocó diseñar, construir y optimizar.</p>
+ 
+-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+-          {projectsData.map((project) => (
+-            <ProjectCard key={project.id} {...project} />
+-          ))}
+-        </div>
++      <div className="mt-16 space-y-24">
++        {projectsData.map((project, i) => (
++          <ProjectCard key={project.id} flip={i % 2 === 1} {...project} />
++        ))}
+       </div>
+     </section>
+   );
+ }
+ 
+-export default Projects;
+\ No newline at end of file
++export default Projects;
+diff --git a/src/components/Projects/SingleProject/ProjectCard.jsx b/src/components/Projects/SingleProject/ProjectCard.jsx
+index df6793b..c1329e5 100644
+--- a/src/components/Projects/SingleProject/ProjectCard.jsx
++++ b/src/components/Projects/SingleProject/ProjectCard.jsx
+@@ -2,54 +2,57 @@ import React from "react";
+ import { FaGithub } from "react-icons/fa";
+ import { FiExternalLink } from "react-icons/fi";
+ 
+-function ProjectCard({ projectName, projectDesc, code, demo, image }) {
++function host(url) {
++  try { return new URL(url).host; } catch { return ""; }
++}
++
++function ProjectCard({ projectName, projectDesc, tags = [], code, demo, image, flip }) {
+   return (
+-    <div className="bg-white/5 backdrop-blur-xl border border-white/10 
+-                    rounded-3xl p-8 shadow-2xl 
+-                    flex flex-col justify-between
+-                    hover:-translate-y-2 hover:border-pink-500/40 
+-                    hover:shadow-pink-500/10 
+-                    transition-all duration-300">
++    <article className="grid items-center gap-8 md:grid-cols-12 md:gap-12">
++      {/* Ventana del navegador con la URL real del proyecto */}
++      <div className={`md:col-span-7 ${flip ? "md:order-2" : ""}`}>
++        <div className="overflow-hidden rounded-xl border border-line/20 bg-surface/60 shadow-[0_30px_80px_-30px_rgb(var(--accent)/0.25)]">
++          <div className="flex items-center gap-3 border-b border-line/15 px-4 py-2.5">
++            <span className="flex gap-1.5">
++              <i className="h-2.5 w-2.5 rounded-full bg-line/25" />
++              <i className="h-2.5 w-2.5 rounded-full bg-line/25" />
++              <i className="h-2.5 w-2.5 rounded-full bg-line/25" />
++            </span>
++            <span className="truncate rounded-md bg-bg/60 px-3 py-0.5 font-mono text-xs text-muted">
++              {host(demo) || "proyecto académico"}
++            </span>
++          </div>
++          <img src={image} alt={`Captura de ${projectName}`} loading="lazy" className="aspect-[16/10] w-full object-cover object-top" />
++        </div>
++      </div>
+ 
+-      <div>
+-        <img 
+-          src={image} 
+-          alt={projectName}
+-          className="w-full h-48 object-cover rounded-xl mb-6"
+-        />
+-        <h3 className="text-xl font-semibold text-white mb-4">
+-          {projectName}
+-        </h3>
++      <div className={`md:col-span-5 ${flip ? "md:order-1" : ""}`}>
++        <h3 className="text-3xl font-semibold leading-tight">{projectName}</h3>
++        <p className="mt-4 leading-relaxed text-muted">{projectDesc}</p>
+ 
+-        <p className="text-gray-400 text-sm leading-relaxed">
+-          {projectDesc}
+-        </p>
+-      </div>
++        <ul className="mt-5 flex flex-wrap gap-2">
++          {tags.map((t) => (
++            <li key={t} className="rounded-md border border-line/15 px-2.5 py-1 font-mono text-xs text-signal">{t}</li>
++          ))}
++        </ul>
+ 
+-      <div className="flex gap-6 mt-8 text-lg text-gray-400">
+-        {code && (
+-          <a
+-            href={code}
+-            target="_blank"
+-            rel="noreferrer"
+-            className="hover:text-pink-500 transition hover:scale-110"
+-          >
+-            <FaGithub />
+-          </a>
+-        )}
+-        {demo && (
+-          <a
+-            href={demo}
+-            target="_blank"
+-            rel="noreferrer"
+-            className="hover:text-pink-500 transition hover:scale-110"
+-          >
+-            <FiExternalLink />
+-          </a>
++        {(demo || code) && (
++          <div className="mt-7 flex flex-wrap gap-3 text-sm">
++            {demo && (
++              <a href={demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 font-medium text-bg transition-colors hover:bg-accent">
++                Ver sitio <FiExternalLink />
++              </a>
++            )}
++            {code && (
++              <a href={code} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line/25 px-5 py-2.5 transition-colors hover:border-accent hover:text-accent">
++                <FaGithub /> Código
++              </a>
++            )}
++          </div>
+         )}
+       </div>
+-    </div>
++    </article>
+   );
+ }
+ 
+-export default ProjectCard;
+\ No newline at end of file
++export default ProjectCard;
+diff --git a/src/components/Services/Services.jsx b/src/components/Services/Services.jsx
+index b5f6e5d..f9a6421 100644
+--- a/src/components/Services/Services.jsx
++++ b/src/components/Services/Services.jsx
+@@ -6,26 +6,15 @@ function Services() {
+   if (!servicesData.length) return null;
+ 
+   return (
+-    <section id="services" className=" text-white py-20 px-6">
+-      <div className="max-w-6xl mx-auto text-center">
+-
+-        <h2 className="text-4xl font-bold text-pink-500 mb-6">
+-          Services
+-        </h2>
+-
+-        <p className="text-gray-400 max-w-2xl mx-auto mb-12">
+-          These are some of the services I offer. Reach out if I can help you with any!
+-        </p>
+-
+-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+-          {servicesData.map((service) => (
+-            <SingleService key={service.id} {...service} />
+-          ))}
+-        </div>
+-
++    <section id="services" className="mx-auto max-w-6xl px-6 py-24">
++      <h2 className="text-4xl font-semibold md:text-5xl">En qué puedo ayudarte</h2>
++      <div className="mt-14 grid gap-10 md:grid-cols-3">
++        {servicesData.map((service) => (
++          <SingleService key={service.id} {...service} />
++        ))}
+       </div>
+     </section>
+   );
+ }
+ 
+-export default Services;
+\ No newline at end of file
++export default Services;
+diff --git a/src/components/Services/SingleService/SingleService.jsx b/src/components/Services/SingleService/SingleService.jsx
+index 4722294..44d5aff 100644
+--- a/src/components/Services/SingleService/SingleService.jsx
++++ b/src/components/Services/SingleService/SingleService.jsx
+@@ -2,32 +2,12 @@ import React from "react";
+ 
+ function SingleService({ title, description, icon: Icon }) {
+   return (
+-    <div
+-      className="bg-white/5 backdrop-blur-xl border border-white/10
+-                 rounded-3xl p-10 shadow-2xl
+-                 flex flex-col items-center text-center
+-                 hover:-translate-y-2
+-                 hover:border-pink-500/40
+-                 hover:shadow-pink-500/10
+-                 transition-all duration-300 group"
+-    >
+-      {Icon && (
+-        <Icon
+-          className="text-4xl text-pink-500 mb-6
+-                     group-hover:scale-110
+-                     group-hover:text-pink-500
+-                     transition-all duration-300"
+-        />
+-      )}
+-
+-      <h3 className="text-xl font-semibold text-white tracking-wide">
+-        {title}
+-      </h3>
+-      <p className="text-gray-400 text-sm mt-3">
+-  {description}
+-</p>
++    <div className="border-t border-line/20 pt-6">
++      {Icon && <Icon className="text-3xl text-accent" aria-hidden="true" />}
++      <h3 className="mt-5 text-xl font-semibold">{title}</h3>
++      <p className="mt-3 text-sm leading-relaxed text-muted">{description}</p>
+     </div>
+   );
+ }
+ 
+-export default SingleService;
+\ No newline at end of file
++export default SingleService;
+diff --git a/src/components/Skills/Skills.jsx b/src/components/Skills/Skills.jsx
+index c88cb7d..3257b18 100644
+--- a/src/components/Skills/Skills.jsx
++++ b/src/components/Skills/Skills.jsx
+@@ -1,69 +1,28 @@
+-import React, { useState } from "react";
+-import { motion } from "framer-motion";
+-import { skillsData } from "../../data/skillsData";
+-import { skillsImage } from "../../utils/skillsImage";
++import React from "react";
++import { skillGroups } from "../../data/skillsData";
+ 
+ function Skills() {
+-  const [isPaused, setIsPaused] = useState(false);
+-
+   return (
+-    <section
+-      id="skills"
+-      className="relative py-24 px-6 overflow-hidden"
+-    >
+-      <div className="max-w-6xl mx-auto">
+-
+-        <h2 className="text-4xl font-bold text-pink-500 mb-16 text-center">
+-          Tech Stack
+-        </h2>
+-
+-        <div
+-          className="overflow-hidden"
+-          onMouseEnter={() => setIsPaused(true)}
+-          onMouseLeave={() => setIsPaused(false)}
+-        >
+-          <motion.div
+-            animate={{
+-              x: isPaused ? 0 : ["0%", "-90%"],
+-            }}
+-            transition={{
+-              repeat: Infinity,
+-              duration: 20,
+-              ease: "linear",
+-            }}
+-            className="flex gap-12"
+-          >
+-            {[...skillsData, ...skillsData].map((skill, index) => (
+-              <div
+-                key={index}
+-                className="bg-white/5 backdrop-blur-xl border border-white/10
+-                           rounded-3xl p-8 min-w-[160px]
+-                           flex flex-col items-center justify-center
+-                           shadow-2xl
+-                           hover:-translate-y-2
+-                           hover:border-pink-500/40
+-                           hover:shadow-pink-500/10
+-                           transition-all duration-300 group"
+-              >
+-                <img
+-                  src={skillsImage(skill)}
+-                  alt={skill}
+-                  className="w-12 h-12 object-contain mb-5
+-                             group-hover:scale-110
+-                             transition-transform duration-300"
+-                />
+-
+-                <h3 className="text-gray-400 text-sm font-medium text-center tracking-wide">
+-                  {skill}
+-                </h3>
+-              </div>
+-            ))}
+-          </motion.div>
+-        </div>
++    <section id="skills" className="mx-auto max-w-6xl px-6 py-24">
++      <h2 className="text-4xl font-semibold md:text-5xl">Stack</h2>
++      <p className="mt-4 max-w-xl text-muted">Herramientas con las que he entregado producto, agrupadas por área.</p>
+ 
+-      </div>
++      <dl className="mt-14 border-t border-line/15">
++        {skillGroups.map((group) => (
++          <div key={group.title} className="grid gap-4 border-b border-line/15 py-7 md:grid-cols-[14rem_1fr] md:gap-12">
++            <dt className="font-display text-xl font-medium">{group.title}</dt>
++            <dd className="flex flex-wrap gap-2">
++              {group.items.map((item) => (
++                <span key={item} className="rounded-md border border-line/15 bg-surface/50 px-3 py-1.5 text-sm text-muted transition-colors hover:border-accent/50 hover:text-ink">
++                  {item}
++                </span>
++              ))}
++            </dd>
++          </div>
++        ))}
++      </dl>
+     </section>
+   );
+ }
+ 
+-export default Skills;
+\ No newline at end of file
++export default Skills;
+diff --git a/src/data/experienceData.js b/src/data/experienceData.js
+index 7f1ffa1..5e7914a 100644
+--- a/src/data/experienceData.js
++++ b/src/data/experienceData.js
+@@ -4,6 +4,8 @@ export const experienceData = [
+     jobtitle: "Desarrolladora Fullstack – Integración PunchOut B2B",
+     startYear: "Oct 2025",
+     endYear: "Ene 2026",
++    stack: ["cXML", "SAP Ariba", "REST APIs", "E-commerce"],
++    highlights: [],
+     description: [
+       "Desarrollé una integración PunchOut B2B compatible con SAP Ariba utilizando cXML.",
+       "Implementé endpoints REST para autenticación, validación de sesiones y sincronización dinámica de catálogos.",
+@@ -16,6 +18,8 @@ export const experienceData = [
+     jobtitle: "Desarrolladora Mobile (React Native)",
+     startYear: "Jun 2025",
+     endYear: "Oct 2025",
++    stack: ["React Native", "Tailwind CSS", "Maps API", "UX móvil"],
++    highlights: [],
+     description: [
+       "Lideré el desarrollo de una aplicación móvil enfocada en recursos de apoyo social para mujeres.",
+       "Construí funcionalidades multiplataforma utilizando React Native y Tailwind CSS.",
+@@ -28,6 +32,11 @@ export const experienceData = [
+     jobtitle: "Desarrolladora Fullstack",
+     startYear: "May 2023",
+     endYear: "Jun 2025",
++    stack: ["React", "Tailwind CSS", ".NET Core", "PostgreSQL", "Scrum"],
++    highlights: [
++      { value: "70%", label: "mejora en carga de módulos" },
++      { value: "30%", label: "menos tiempo de desarrollo" },
++    ],
+     description: [
+       "Lideré el desarrollo Fullstack de plataformas cívicas a gran escala utilizando React, Tailwind, APIs en .NET Core y PostgreSQL.",
+       "Diseñé arquitecturas de componentes reutilizables y dashboards para múltiples roles dentro de la plataforma.",
+@@ -43,6 +52,8 @@ export const experienceData = [
+     jobtitle: "Desarrolladora Frontend",
+     startYear: "Ene 2021",
+     endYear: "Jun 2022",
++    stack: ["Angular", "TypeScript", "Bootstrap", "Spring Boot"],
++    highlights: [],
+     description: [
+       "Desarrollé componentes reutilizables de interfaz utilizando Angular, TypeScript y Bootstrap.",
+       "Construí formularios dinámicos y tablas comparativas para plataformas del sector asegurador.",
+diff --git a/src/data/skillsData.js b/src/data/skillsData.js
+index 98c6100..99b17fd 100644
+--- a/src/data/skillsData.js
++++ b/src/data/skillsData.js
+@@ -106,3 +106,11 @@
+     Webex
+     Wordpress
+ */
++
++// Agrupado por área para la sección de Skills (el nombre debe coincidir con skillsImage cuando haya icono)
++export const skillGroups = [
++    { title: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Angular', 'Tailwind', 'HTML', 'CSS', 'MaterialUI', 'Bootstrap'] },
++    { title: 'Móvil', items: ['React Native', 'Flutter'] },
++    { title: 'Backend y datos', items: ['.NET Core', 'Node.js', 'Python', 'Django', 'PHP', 'PostgreSQL', 'MySQL', 'Firebase'] },
++    { title: 'Cloud y herramientas', items: ['GCP', 'AWS', 'Azure', 'Git', 'Figma', 'Wordpress'] },
++]
+diff --git a/src/index.css b/src/index.css
+index f0138c2..c065684 100644
+--- a/src/index.css
++++ b/src/index.css
+@@ -2,19 +2,67 @@
+ @tailwind components;
+ @tailwind utilities;
+ 
+-body {
+-  @apply  text-white;
+-  font-family: "Questrial", sans-serif;
++:root {
++  --bg: 13 10 31;
++  --surface: 21 17 48;
++  --line: 190 170 255;
++  --ink: 236 233 248;
++  --muted: 156 151 184;
++  --accent: 255 77 157;
++  --signal: 157 140 255;
+ }
+ 
+-@keyframes gradientFlow {
+-  0% {
+-    background-position: 0% 50%;
++@layer base {
++  html {
++    scroll-behavior: smooth;
++    scroll-padding-top: 5rem;
++    background: rgb(var(--bg));
+   }
+-  50% {
+-    background-position: 100% 50%;
++  body {
++    @apply bg-bg text-ink font-sans antialiased;
++    font-feature-settings: "ss01", "cv11";
+   }
+-  100% {
+-    background-position: 0% 50%;
++  h1, h2, h3 {
++    @apply font-display;
++    letter-spacing: -0.025em;
+   }
+-}
+\ No newline at end of file
++  ::selection {
++    background: rgb(var(--accent) / 0.35);
++  }
++  :focus-visible {
++    outline: 2px solid rgb(var(--accent));
++    outline-offset: 3px;
++    border-radius: 4px;
++  }
++  @media (prefers-reduced-motion: reduce) {
++    html { scroll-behavior: auto; }
++    *, *::before, *::after {
++      animation-duration: 0.01ms !important;
++      transition-duration: 0.01ms !important;
++    }
++  }
++}
++
++/* Fondo: retícula de puntos que se desvanece + un único brillo en el hero */
++.site-bg::before {
++  content: "";
++  position: fixed;
++  inset: 0;
++  z-index: 0;
++  pointer-events: none;
++  background-image: radial-gradient(rgb(var(--line) / 0.16) 1px, transparent 1px);
++  background-size: 28px 28px;
++  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
++  mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
++}
++.site-bg::after {
++  content: "";
++  position: absolute;
++  top: -12rem;
++  right: -10rem;
++  width: 42rem;
++  height: 42rem;
++  z-index: 0;
++  pointer-events: none;
++  background: radial-gradient(closest-side, rgb(var(--accent) / 0.16), transparent);
++}
+diff --git a/src/main.jsx b/src/main.jsx
+index b9a1a6d..fe40510 100644
+--- a/src/main.jsx
++++ b/src/main.jsx
+@@ -1,5 +1,8 @@
+ import { StrictMode } from 'react'
+ import { createRoot } from 'react-dom/client'
++import '@fontsource-variable/bricolage-grotesque'
++import '@fontsource-variable/geist'
++import '@fontsource-variable/geist-mono'
+ import './index.css'
+ import App from './App.jsx'
+ 
+diff --git a/src/pages/Main/Main.jsx b/src/pages/Main/Main.jsx
+index 76aea10..5b579e1 100644
+--- a/src/pages/Main/Main.jsx
++++ b/src/pages/Main/Main.jsx
+@@ -1,25 +1,21 @@
+-import React from 'react'
+-// import { Helmet } from 'react-helmet'
+-
+-import { Navbar, Footer, Landing, About, Skills, Blog, Education, Experience, Contacts, Projects, Services, Achievement } from '../../components'
+-import { headerData } from '../../data/headerData'
++import { Navbar, Footer, Landing, About, Skills, Experience, Contacts, Projects, Services, Achievement } from '../../components'
+ 
+ function Main() {
+     return (
+-        <div>
+-            <Navbar />        
+-            <Landing />
+-            <About />
+-            {/* <Education /> */}
+-            <Skills />
+-            <Experience />
+-            <Projects />
+-            <Achievement />
+-            <Services />
+-            <Blog />
+-            <Contacts />
++        <>
++            <Navbar />
++            <main>
++                <Landing />
++                <Experience />
++                <Projects />
++                <Skills />
++                <About />
++                <Services />
++                <Achievement />
++                <Contacts />
++            </main>
+             <Footer />
+-        </div>
++        </>
+     )
+ }
+ 
+diff --git a/src/utils/period.js b/src/utils/period.js
+new file mode 100644
+index 0000000..dcf6464
+--- /dev/null
++++ b/src/utils/period.js
+@@ -0,0 +1,17 @@
++const MONTHS = { ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5, jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11 };
++
++// "Oct 2025" -> meses absolutos (año * 12 + mes)
++export function parseMonth(label) {
++  const [m, y] = label.trim().toLowerCase().split(/\s+/);
++  return Number(y) * 12 + MONTHS[m];
++}
++
++// Duración legible de un periodo (ambos meses inclusivos)
++export function durationLabel(start, end) {
++  const total = parseMonth(end) - parseMonth(start) + 1;
++  const years = Math.floor(total / 12);
++  const months = total % 12;
++  const y = years ? `${years} ${years === 1 ? "año" : "años"}` : "";
++  const m = months ? `${months} ${months === 1 ? "mes" : "meses"}` : "";
++  return [y, m].filter(Boolean).join(" ");
++}
+diff --git a/tailwind.config.js b/tailwind.config.js
+index df321fe..184c6be 100644
+--- a/tailwind.config.js
++++ b/tailwind.config.js
+@@ -1,9 +1,25 @@
+ /** @type {import('tailwindcss').Config} */
++const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
++
+ export default {
+   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+   theme: {
+-    extend: {},
++    extend: {
++      colors: {
++        bg: token("bg"),
++        surface: token("surface"),
++        line: token("line"),
++        ink: token("ink"),
++        muted: token("muted"),
++        accent: token("accent"),
++        signal: token("signal"),
++      },
++      fontFamily: {
++        display: ['"Bricolage Grotesque Variable"', "system-ui", "sans-serif"],
++        sans: ['"Geist Variable"', "system-ui", "sans-serif"],
++        mono: ['"Geist Mono Variable"', "ui-monospace", "monospace"],
++      },
++    },
+   },
+   plugins: [],
+-}
+-
++};
+-- 
+2.43.0
+

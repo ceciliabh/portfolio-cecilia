@@ -1,134 +1,58 @@
-import React from "react";
-import {
-  FaGithub,
-  FaLinkedinIn,
-  FaTwitter,
-  FaInstagram,
-  FaWhatsapp,
-} from "react-icons/fa";
-import { FiPhone, FiAtSign } from "react-icons/fi";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-
+import React, { useState } from "react";
+import { FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FiCopy, FiCheck } from "react-icons/fi";
 import { socialsData } from "../../data/socialsData";
 import { contactsData } from "../../data/contactsData";
 
 function Contacts() {
-  // 🔥 CAMBIA ESTE NÚMERO POR EL TUYO (formato internacional sin +)
-  const phoneNumber = "522223538675";
+  const [copied, setCopied] = useState(false);
 
-const whatsappMessage =
-  "Hola Cecilia, vi tu portafolio y me gustaría hablar contigo sobre una oportunidad/proyecto.";
+  const digits = contactsData.phone.replace(/\D/g, "");
+  const message = "Hola Cecilia, vi tu portafolio y me gustaría hablar contigo sobre una oportunidad/proyecto.";
+  const whatsappURL = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
 
-  const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    whatsappMessage
-  )}`;
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contactsData.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${contactsData.email}`;
+    }
+  };
 
   return (
-    <section
-      id="contacts"
-      className="text-white py-20 px-6 bg-transparent"
-    >
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+    <section id="contacts" className="mx-auto max-w-6xl px-6 py-24">
+      <div className="rounded-3xl border border-line/20 bg-surface/50 p-8 md:p-16">
+        <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] md:text-6xl">
+          Hablemos de tu próximo producto.
+        </h2>
+        <p className="mt-6 max-w-xl text-muted">
+          Disponible para proyectos freelance, colaboraciones o posiciones full-time. Si quieres mejorar un producto digital o iniciar uno desde cero, escríbeme.
+        </p>
 
-        {/* LEFT SIDE */}
-        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 shadow-2xl">
-          <h2 className="text-4xl font-bold mb-8 text-pink-500">
-            Trabajemos Juntos!
-          </h2>
-
-          <p className="text-gray-400 mb-8 leading-relaxed">
-            Ayudo a construir aplicaciones web modernas, escalables y enfocadas en resultados.
-            Estoy disponible para proyectos freelance, colaboraciones o posiciones full-time.
-            Si buscas mejorar tu producto digital o iniciar uno desde cero, hablemos.
-          </p>
-
-          <a
-            href={whatsappURL}
-            target="_blank"
-            rel="noreferrer"
-            className="group bg-[#0f0f0f] border border-green-500/40 text-green-400 
-                       hover:bg-green-500 hover:text-black 
-                       px-6 py-4 rounded-2xl flex items-center gap-3 
-                       transition-all duration-300 shadow-xl 
-                       hover:shadow-green-500/30 hover:scale-105 w-fit"
+        <div className="mt-10 flex flex-wrap items-center gap-3">
+          <a href={`mailto:${contactsData.email}`} className="rounded-full bg-accent px-6 py-3 font-medium text-bg transition-opacity hover:opacity-90">
+            {contactsData.email}
+          </a>
+          <button
+            onClick={copyEmail}
+            className="inline-flex items-center gap-2 rounded-full border border-line/25 px-5 py-3 transition-colors hover:border-accent hover:text-accent"
+            aria-live="polite"
           >
-            Envíame un mensaje por WhatsApp
-            <FaWhatsapp className="text-xl group-hover:rotate-12 transition-transform duration-300" />
+            {copied ? <FiCheck /> : <FiCopy />}
+            {copied ? "Correo copiado" : "Copiar correo"}
+          </button>
+          <a href={whatsappURL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line/25 px-5 py-3 transition-colors hover:border-accent hover:text-accent">
+            <FaWhatsapp /> WhatsApp
           </a>
         </div>
 
-        {/* RIGHT SIDE */}
-        <div className="space-y-6 backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 shadow-2xl">
-
-          <div className="flex items-center gap-4">
-            <FiAtSign className="text-2xl text-pink-500" />
-            <a
-              href={`mailto:${contactsData.email}`}
-              className="text-gray-300 hover:text-pink-500 transition"
-            >
-              {contactsData.email}
-            </a>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <FiPhone className="text-2xl text-pink-500" />
-            <a
-              href={`tel:${contactsData.phone}`}
-              className="text-gray-300 hover:text-pink-500 transition"
-            >
-              {contactsData.phone}
-            </a>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <HiOutlineLocationMarker className="text-2xl text-pink-500" />
-            <p className="text-gray-300">{contactsData.address}</p>
-          </div>
-
-          <div className="flex gap-6 mt-8 text-2xl text-gray-400">
-            {socialsData.github && (
-              <a
-                href={socialsData.github}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-pink-500 transition hover:scale-110"
-              >
-                <FaGithub />
-              </a>
-            )}
-            {socialsData.linkedIn && (
-              <a
-                href={socialsData.linkedIn}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-pink-500 transition hover:scale-110"
-              >
-                <FaLinkedinIn />
-              </a>
-            )}
-            {socialsData.twitter && (
-              <a
-                href={socialsData.twitter}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-pink-500 transition hover:scale-110"
-              >
-                <FaTwitter />
-              </a>
-            )}
-            {socialsData.instagram && (
-              <a
-                href={socialsData.instagram}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-pink-500 transition hover:scale-110"
-              >
-                <FaInstagram />
-              </a>
-            )}
-          </div>
+        <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-line/15 pt-8 text-sm text-muted">
+          <span>{contactsData.address}</span>
+          <a href={socialsData.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink"><FaGithub /> GitHub</a>
+          <a href={socialsData.linkedIn} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-ink"><FaLinkedinIn /> LinkedIn</a>
         </div>
-
       </div>
     </section>
   );

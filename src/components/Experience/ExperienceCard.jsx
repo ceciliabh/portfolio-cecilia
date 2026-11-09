@@ -1,48 +1,55 @@
 import React from "react";
+import { durationLabel } from "../../utils/period";
 
-function ExperienceCard({
-  company,
-  jobtitle,
-  startYear,
-  endYear,
-  description,
-}) {
+function ExperienceCard({ index, company, jobtitle, startYear, endYear, description, stack = [], highlights = [] }) {
   return (
-    <div className="relative pl-12 group">
-
-      {/* Dot */}
-      <div className="absolute left-[6px] top-8 w-4 h-4 rounded-full 
-                      bg-pink-500 shadow-lg shadow-pink-500/40
-                      group-hover:scale-125 transition-transform duration-300" />
-
-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 
-                      rounded-3xl p-8 shadow-2xl 
-                      hover:border-pink-500/40 
-                      hover:shadow-pink-500/10 
-                      transition-all duration-300">
-
-        <p className="text-pink-500 text-sm mb-2">
+    <article
+      id={`role-${index}`}
+      data-role
+      data-index={index}
+      className="rounded-2xl border border-line/15 bg-surface/50 p-7 transition-colors hover:border-line/30 md:p-9"
+    >
+      <header className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+        <div>
+          <h3 className="text-2xl font-semibold leading-snug">{jobtitle}</h3>
+          <p className="mt-1 text-accent">{company}</p>
+        </div>
+        <p className="font-mono text-sm text-muted">
           {startYear} – {endYear}
+          <span className="ml-3 text-signal">{durationLabel(startYear, endYear)}</span>
         </p>
+      </header>
 
-        <h3 className="text-xl font-semibold text-white">
-          {jobtitle}
-        </h3>
+      {highlights.length > 0 && (
+        <dl className="mt-7 grid gap-3 sm:grid-cols-2">
+          {highlights.map((h) => (
+            <div key={h.label} className="rounded-xl border border-accent/25 bg-accent/5 px-5 py-4">
+              <dt className="font-display text-4xl font-semibold text-accent">{h.value}</dt>
+              <dd className="mt-1 text-sm text-muted">{h.label}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
 
-        <p className="text-gray-400 mb-4">
-          {company}
-        </p>
+      <ul className="mt-7 space-y-3 text-[0.95rem] leading-relaxed text-muted">
+        {description.map((item, i) => (
+          <li key={i} className="flex gap-3">
+            <span className="mt-[0.7em] h-px w-3 shrink-0 bg-signal" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
 
-        <ul className="space-y-2 text-sm text-gray-400 list-disc list-inside">
-          {description.map((item, index) => (
-            <li key={index} className="leading-relaxed">
-              {item}
+      {stack.length > 0 && (
+        <ul className="mt-7 flex flex-wrap gap-2">
+          {stack.map((s) => (
+            <li key={s} className="rounded-md border border-line/15 px-2.5 py-1 font-mono text-xs text-signal">
+              {s}
             </li>
           ))}
         </ul>
-
-      </div>
-    </div>
+      )}
+    </article>
   );
 }
 

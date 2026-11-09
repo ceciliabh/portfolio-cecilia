@@ -2,19 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply  text-white;
-  font-family: "Questrial", sans-serif;
+:root {
+  --bg: 13 10 31;
+  --surface: 21 17 48;
+  --line: 190 170 255;
+  --ink: 236 233 248;
+  --muted: 156 151 184;
+  --accent: 255 77 157;
+  --signal: 157 140 255;
 }
 
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    background: rgb(var(--bg));
   }
-  50% {
-    background-position: 100% 50%;
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
-  100% {
-    background-position: 0% 50%;
+  h1, h2, h3 {
+    @apply font-display;
+    letter-spacing: -0.025em;
   }
+  ::selection {
+    background: rgb(var(--accent) / 0.35);
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Fondo: retícula de puntos que se desvanece + un único brillo en el hero */
+.site-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgb(var(--line) / 0.16) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+}
+.site-bg::after {
+  content: "";
+  position: absolute;
+  top: -12rem;
+  right: -10rem;
+  width: 42rem;
+  height: 42rem;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgb(var(--accent) / 0.16), transparent);
 }

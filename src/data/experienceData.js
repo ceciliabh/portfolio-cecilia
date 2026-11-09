@@ -4,6 +4,8 @@ export const experienceData = [
     jobtitle: "Desarrolladora Fullstack – Integración PunchOut B2B",
     startYear: "Oct 2025",
     endYear: "Ene 2026",
+    stack: ["cXML", "SAP Ariba", "REST APIs", "E-commerce"],
+    highlights: [],
     description: [
       "Desarrollé una integración PunchOut B2B compatible con SAP Ariba utilizando cXML.",
       "Implementé endpoints REST para autenticación, validación de sesiones y sincronización dinámica de catálogos.",
@@ -16,6 +18,8 @@ export const experienceData = [
     jobtitle: "Desarrolladora Mobile (React Native)",
     startYear: "Jun 2025",
     endYear: "Oct 2025",
+    stack: ["React Native", "Tailwind CSS", "Maps API", "UX móvil"],
+    highlights: [],
     description: [
       "Lideré el desarrollo de una aplicación móvil enfocada en recursos de apoyo social para mujeres.",
       "Construí funcionalidades multiplataforma utilizando React Native y Tailwind CSS.",
@@ -28,6 +32,11 @@ export const experienceData = [
     jobtitle: "Desarrolladora Fullstack",
     startYear: "May 2023",
     endYear: "Jun 2025",
+    stack: ["React", "Tailwind CSS", ".NET Core", "PostgreSQL", "Scrum"],
+    highlights: [
+      { value: "70%", label: "mejora en carga de módulos" },
+      { value: "30%", label: "menos tiempo de desarrollo" },
+    ],
     description: [
       "Lideré el desarrollo Fullstack de plataformas cívicas a gran escala utilizando React, Tailwind, APIs en .NET Core y PostgreSQL.",
       "Diseñé arquitecturas de componentes reutilizables y dashboards para múltiples roles dentro de la plataforma.",
@@ -43,6 +52,8 @@ export const experienceData = [
     jobtitle: "Desarrolladora Frontend",
     startYear: "Ene 2021",
     endYear: "Jun 2022",
+    stack: ["Angular", "TypeScript", "Bootstrap", "Spring Boot"],
+    highlights: [],
     description: [
       "Desarrollé componentes reutilizables de interfaz utilizando Angular, TypeScript y Bootstrap.",
       "Construí formularios dinámicos y tablas comparativas para plataformas del sector asegurador.",

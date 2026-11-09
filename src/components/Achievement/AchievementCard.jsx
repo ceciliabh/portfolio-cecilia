@@ -1,58 +1,25 @@
 import React from "react";
-import { AiOutlineFolder } from "react-icons/ai";
+import { FiExternalLink } from "react-icons/fi";
 
-function AchievementCard({ title, details, date, field, image, links }) {
+function AchievementCard({ title, details, date, field, links }) {
   return (
-    <div className="bg-white/5 backdrop-blur-xl border border-white/10 
-                    rounded-3xl p-8 shadow-2xl 
-                    hover:border-pink-500/40 hover:shadow-pink-500/10 
-                    transition-all duration-300">
-
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold text-pink-500 mb-3">
-          {title}
-        </h2>
-
-        <p className="text-gray-400 text-sm leading-relaxed">
-          {details}
-        </p>
-
-        {/* 🔥 LINKS */}
+    <article className="grid gap-3 border-b border-line/15 py-7 md:grid-cols-[9rem_1fr_12rem] md:gap-10">
+      <p className="font-mono text-sm text-signal">{date}</p>
+      <div>
+        <h3 className="text-lg font-semibold leading-snug">{title}</h3>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{details}</p>
         {links && (
-          <div className="mt-4 space-y-1">
-            {links.map((link, index) => (
-              <a
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noreferrer"
-                className="block text-sm text-pink-400 hover:text-pink-300 hover:underline transition"
-              >
-                📄 {link.label} →
+          <div className="mt-3 flex flex-col gap-1.5">
+            {links.map((l) => (
+              <a key={l.url} href={l.url} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center gap-2 text-sm text-accent hover:underline">
+                {l.label} <FiExternalLink />
               </a>
             ))}
           </div>
         )}
       </div>
-
-      <div className="flex justify-between items-center text-sm text-gray-500">
-        <span>{date}</span>
-        <div className="flex items-center gap-2">
-          <AiOutlineFolder />
-          <span>{field}</span>
-        </div>
-      </div>
-
-      {image && (
-        <div className="mt-6 overflow-hidden rounded-2xl">
-          <img
-            src={image}
-            alt={title}
-            className="rounded-2xl hover:scale-105 transition duration-500"
-          />
-        </div>
-      )}
-    </div>
+      <p className="text-sm text-muted md:text-right">{field}</p>
+    </article>
   );
 }
 

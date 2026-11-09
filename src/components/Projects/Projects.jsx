@@ -4,17 +4,14 @@ import ProjectCard from "./SingleProject/ProjectCard";
 
 function Projects() {
   return (
-    <section id="projects" className=" text-white py-20 px-6">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-pink-500">
-          Proyectos
-        </h2>
+    <section id="projects" className="mx-auto max-w-6xl px-6 py-24">
+      <h2 className="text-4xl font-semibold md:text-5xl">Proyectos</h2>
+      <p className="mt-4 max-w-xl text-muted">Productos en producción y trabajos de investigación donde me tocó diseñar, construir y optimizar.</p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projectsData.map((project) => (
-            <ProjectCard key={project.id} {...project} />
-          ))}
-        </div>
+      <div className="mt-16 space-y-24">
+        {projectsData.map((project, i) => (
+          <ProjectCard key={project.id} flip={i % 2 === 1} {...project} />
+        ))}
       </div>
     </section>
   );
